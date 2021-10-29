@@ -1,31 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 const MyCitiesScreen = ({ navigation }) => {
   return (
-    <>
-      <View>
-        <Text>Mis ciudades</Text>
-      </View>
-      <TouchableOpacity onPress={() => navigation.navigate("MyCitiesScreen")}>
-        <View style={styles.btn}>
-          <Text style={styles.btnText}>Mis Ciudades</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log("hola")}>
-        <View style={styles.btn2}>
-          <Text style={styles.btnText}>Información</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("WeatherScreen")}>
-        <View style={styles.btn2}>
-          <Text style={styles.btnText}>Buscar Ciudad</Text>
-        </View>
-      </TouchableOpacity>
-    </>
+    <View>
+      <Text>Hola</Text>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default MyCitiesScreen;
