@@ -1,27 +1,10 @@
-import "react-native-gesture-handler";
 import React from "react";
-import { View, StyleSheet, ImageBackground } from "react-native";
-import AppNavigator from "./src/navigation/AppNavigator";
-
-
+import "react-native-gesture-handler";
+import { StyleSheet } from "react-native";
+import Navigation from "./src/navigation/Navigation";
 
 export default function App() {
-  return (
-    
-      <ImageBackground
-        source={require("./assets/splash.png")}
-        style={styles.image}
-      >
-        <AppNavigator />
-      </ImageBackground>
-   
-  );
+  return <Navigation />;
 }
 
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-  },
-});
+const styles = StyleSheet.create({});

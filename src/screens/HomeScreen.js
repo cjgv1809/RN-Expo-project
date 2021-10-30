@@ -1,37 +1,44 @@
 import React from "react";
-import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
-import {styles} from '../theme/appTheme'
+import {
+  View,
+  ImageBackground,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import ButtonComponent from "../components/Button/Button";
+import InputComponent from "../components/Input/Input";
+import HomeHeader from "../components/HomeHeader/HomeHeader";
+import styles from "../theme/theme";
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <ImageBackground
-      source={require("../../assets/splash.png")}
-      style={styles.image}
-    >
-      <View style={styles.container}>
-        <View>
-          <Text>Home</Text>
+    <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={require("../../assets/bgImage.jpeg")}
+        style={styles.image}
+      >
+        <View style={styles.headerContainer}>
+          <HomeHeader />
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("MyCitiesScreen")}>
-          <View style={styles.btn}>
-            <Text style={styles.btnText}>Mis Ciudades</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log("hola")}>
-          <View style={styles.btn2}>
-            <Text style={styles.btnText}>Información</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("WeatherScreen")}>
-          <View style={styles.btn2}>
-            <Text style={styles.btnText}>Buscar Ciudad</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    </ImageBackground>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("MyCitiesScreen")}
+          >
+            <ButtonComponent icon="folder" text="Mis Ciudades" />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <ButtonComponent icon="info" text="Info & Uso" />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <ButtonComponent icon="group" text="Nosotros" />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.inputContainer}>
+          <InputComponent />
+        </View>
+      </ImageBackground>
+    </SafeAreaView>
   );
 };
-
-
 
 export default HomeScreen;
