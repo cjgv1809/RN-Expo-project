@@ -1,14 +1,9 @@
 import React from "react";
-import {
-  View,
-  ImageBackground,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { View, ImageBackground, SafeAreaView } from "react-native";
 import ButtonComponent from "../components/Button/Button";
 import InputComponent from "../components/Input/Input";
 import HomeHeader from "../components/HomeHeader/HomeHeader";
-import styles from "../theme/theme";
+import styles from "../stylesGlobal/stylesGlobalScreen";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -17,23 +12,27 @@ const HomeScreen = ({ navigation }) => {
         source={require("../../assets/bgImage.jpeg")}
         style={styles.image}
       >
-        <View style={styles.headerContainer}>
+        <View>
           <HomeHeader />
         </View>
         <View style={styles.btnContainer}>
-          <TouchableOpacity
+          <ButtonComponent
+            icon="folder"
+            text="Mis Ciudades"
             onPress={() => navigation.navigate("MyCitiesScreen")}
-          >
-            <ButtonComponent icon="folder" text="Mis Ciudades" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <ButtonComponent icon="info" text="Info & Uso" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <ButtonComponent icon="group" text="Nosotros" />
-          </TouchableOpacity>
+          />
+          <ButtonComponent
+            icon="info"
+            text="Info & Uso"
+            onPress={() => console.log('Abriendo modal...')}
+          />
+          <ButtonComponent
+            icon="group"
+            text="Nosotros"
+            onPress={() => navigation.navigate("AboutUsScreen")}
+          />
         </View>
-        <View style={styles.inputContainer}>
+        <View>
           <InputComponent />
         </View>
       </ImageBackground>

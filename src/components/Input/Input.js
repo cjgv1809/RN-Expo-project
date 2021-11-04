@@ -17,7 +17,6 @@ const InputComponent = () => {
   return (
     <Input
       placeholder="Buscar ciudad"
-      autoFocus
       type="text"
       value={city}
       onChange={(e) => setCity(e.nativeEvent.text)}
