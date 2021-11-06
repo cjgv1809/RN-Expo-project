@@ -2,18 +2,20 @@ import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
   btnContainerStyle: {
-    marginHorizontal: 10,
-    marginBottom: 5,
+    marginHorizontal: 3,
+    marginBottom: 6,
   },
   btnStyle: {
-    backgroundColor: "#fff7",
-    borderRadius: 5,
-    paddingHorizontal: 15,
-    paddingVertical: 14,
+    backgroundColor: "#B0B0AE85",
+    borderRadius: 15,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    width: 110,
+    height: 70,
   },
   btnTitleStyle: {
     fontWeight: "400",
-    fontSize: 14,
+    fontSize: 13,
     color: "#fff",
   },
 });

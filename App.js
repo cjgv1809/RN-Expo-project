@@ -1,10 +1,13 @@
-import React from "react";
 import "react-native-gesture-handler";
-import { StyleSheet } from "react-native";
-import Navigation from "./src/navigation/Navigation";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import {NavigationApp} from "./src/navigation/NavigationApp";
 
 export default function App() {
-  return <Navigation />;
+  
+  return (
+    <NavigationContainer>
+      <NavigationApp/>
+    </NavigationContainer>
+  ) 
 }
-
-const styles = StyleSheet.create({});

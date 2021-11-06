@@ -1,39 +1,44 @@
-import React from "react";
-import {
-  View,
-  ImageBackground,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import React,{useState} from "react";
+import { View, ImageBackground, SafeAreaView } from "react-native";
 import ButtonComponent from "../components/Button/Button";
 import InputComponent from "../components/Input/Input";
 import HomeHeader from "../components/HomeHeader/HomeHeader";
-import styles from "../theme/theme";
+import InfoModal from "../components/InfoModal/InfoModal";
+import styles from "../stylesGlobal/stylesGlobalScreen";
 
 const HomeScreen = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false)
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
         source={require("../../assets/bgImage.jpeg")}
         style={styles.image}
       >
-        <View style={styles.headerContainer}>
+        <View>
           <HomeHeader />
+          <InfoModal
+            visible={modalVisible}
+            onPress={() => setModalVisible(false)}
+          />
         </View>
         <View style={styles.btnContainer}>
-          <TouchableOpacity
+          <ButtonComponent
+            icon="folder"
+            text="Mis Ciudades"
             onPress={() => navigation.navigate("MyCitiesScreen")}
-          >
-            <ButtonComponent icon="folder" text="Mis Ciudades" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <ButtonComponent icon="info" text="Info & Uso" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <ButtonComponent icon="group" text="Nosotros" />
-          </TouchableOpacity>
+          />
+          <ButtonComponent
+            icon="info"
+            text="Info & Uso"
+            onPress={() => setModalVisible(true)}
+          />
+          <ButtonComponent
+            icon="group"
+            text="Nosotros"
+            onPress={() => navigation.navigate("AboutUsScreen")}
+          />
         </View>
-        <View style={styles.inputContainer}>
+        <View>
           <InputComponent />
         </View>
       </ImageBackground>

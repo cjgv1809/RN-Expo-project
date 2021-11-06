@@ -1,17 +1,18 @@
 import React from "react";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import { Button } from "react-native-elements";
+import { Button, Icon } from "react-native-elements";
 import styles from "./styles";
 
-const ButtonComponent = ({ icon, text }) => {
+const ButtonComponent = ({ icon, text, onPress, type }) => {
   return (
     <Button
-      icon={<Icon name={icon} size={28} color="#fff" />}
-      title={text}
-      containerStyle={styles.btnContainerStyle}
       buttonStyle={styles.btnStyle}
-      titleStyle={styles.btnTitleStyle}
+      containerStyle={styles.btnContainerStyle}
+      icon={<Icon name={icon} size={30} color="#fff" />}
       iconPosition="top"
+      onPress={onPress}
+      title={text}
+      titleStyle={styles.btnTitleStyle}
+      type={type}
     />
   );
 };

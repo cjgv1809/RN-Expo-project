@@ -1,25 +1,29 @@
 import React from "react";
-import { View, ImageBackground, SafeAreaView } from "react-native";
+import {
+  View,
+  SafeAreaView,
+  ImageBackground,
+  Text,
+} from "react-native";
+
 import ButtonComponent from "../components/Button/Button";
 import InputComponent from "../components/Input/Input";
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle";
-import Weather from "../components/Weather/Weather";
 import styles from "../stylesGlobal/stylesGlobalScreen";
 
-const city='Mar del Plata'
-const WeatherScreen = ({ navigation }) => {
+const AboutUsScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
         source={require("../../assets/bgImage2.jpeg")}
         style={styles.image}
       >
-        <View style={styles.container2}>
+        <View style={styles.container}>
           <View>
-            <HeaderTitle title={city} />
+            <HeaderTitle title="Sobre Nosotros" />
           </View>
-          <View>
-            <Weather />
+          <View style={styles.textContainerAbout}>
+            <Text>Somos un grupo de ....</Text>
           </View>
           <View style={styles.btnContainer}>
             <ButtonComponent
@@ -33,9 +37,9 @@ const WeatherScreen = ({ navigation }) => {
               onPress={() => navigation.navigate("MyCitiesScreen")}
             />
             <ButtonComponent
-              icon="queue"
-              text="Agregar"
-              onPress={() => console.log("Agregando a la db")}
+              icon="compare"
+              text="Modo Claro"
+              onPress={() => console.log("modo dark")}
             />
           </View>
           <View>
@@ -47,4 +51,4 @@ const WeatherScreen = ({ navigation }) => {
   );
 };
 
-export default WeatherScreen;
+export default AboutUsScreen;
