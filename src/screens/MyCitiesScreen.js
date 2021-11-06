@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, View, SafeAreaView, ImageBackground } from "react-native";
+import { FlatList, View, SafeAreaView, ImageBackground, Alert, Text } from "react-native";
 
 import ButtonComponent from "../components/Button/Button";
 import InputComponent from "../components/Input/Input";
@@ -20,7 +20,11 @@ const initialCities = [
   { id: "10", cityName: "Villa Gesell" },
 ];
 const MyCitiesScreen = ({ navigation }) => {
-  const [cities, setCities] = useState(initialCities);
+  const [cities, setCities] = useState(initialCities);  
+function showAlert() {
+  Alert.alert("Seguro", "", [{ text: "OK" }]);
+}
+
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -35,7 +39,11 @@ const MyCitiesScreen = ({ navigation }) => {
             <FlatList
               data={cities}
               renderItem={({ item }) => (
-                <MyCities item={item} navigation={navigation} />
+                <MyCities
+                  item={item}
+                  navigation={navigation}
+                  onPress={() => showAlert()}
+                />
               )}
               keyExtractor={(item) => item.id}
             />
@@ -54,7 +62,7 @@ const MyCitiesScreen = ({ navigation }) => {
             <ButtonComponent
               icon="compare"
               text="Modo Claro"
-              onPress={() => console.log('modo dark')}
+              onPress={() => console.log("modo dark")}
             />
           </View>
           <View>

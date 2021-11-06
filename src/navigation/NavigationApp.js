@@ -7,7 +7,7 @@ import MapMyCitiesScreen from "../screens/MapMyCitiesScreen";
 import MyCitiesScreen from "../screens/MyCitiesScreen";
 import AboutUsScreen from "../screens/AboutUsScreen";
 
- const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 
 export const NavigationApp = () => {
   return (

@@ -10,11 +10,12 @@ export default styles = StyleSheet.create({
     borderRadius: 15,
     paddingHorizontal: 10,
     paddingVertical: 5,
-    width: 108,
+    width: 110,
+    height: 70,
   },
   btnTitleStyle: {
     fontWeight: "400",
-    fontSize: 14,
+    fontSize: 13,
     color: "#fff",
   },
 });

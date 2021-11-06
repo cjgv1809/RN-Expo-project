@@ -1,53 +1,58 @@
 import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
-  containerCityList: {
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "#0005",
+  cityWeatherContainer: {
+    backgroundColor: "#fff7",
+    height: 120,
+    marginHorizontal: 10,
+    marginBottom: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 15,
+    borderRadius: 15,
+  },
+  infoWeatherContainer: {
+    flexDirection: "row",
+  },
+  weatherMaxMinContainer: {
+    flexDirection: "row",
+  },
+  iconWeather: {
+    width: 50,
+    height: 50,
+  },
+  temMin: {
+    backgroundColor: "#8394CF",
     borderRadius: 15,
     flexDirection: "row",
-    height: 50,
-    marginBottom: 5,
-    paddingHorizontal: 10,
+    marginHorizontal: 10,
+    width: 145,
   },
-  containerTextCity: {
-    alignSelf: "center",
-  },
-  textCityList: {
-    color: "#FFFF",
-    fontSize: 16,
-  },
-  containerBtns: {
+  temMax: {
+    backgroundColor: "#C00000",
+    borderRadius: 15,
     flexDirection: "row",
-    justifyContent: "space-between",
-    width: "90%",
+    width: 145,
   },
-  containerBtnWeather: {
+  textInfoMaxMin: {
+    color: "#CFCDCD",
+  },
+  weatherWeekContainer: {},
+  weatherWeekList: {
+    backgroundColor: "#373737",
+    height: 80,
+    marginBottom: 10,
+    marginHorizontal: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 15,
+    borderRadius: 15,
+  },
+  containerMapCities: {
     alignItems: "center",
-    backgroundColor: "#B0B0AE70",
-    borderRadius: 10,
-    flexDirection: "row",
-    height: 40,
-    justifyContent: "center",
-    marginHorizontal: 5,
-    paddingVertical: 2,
-    // width: "55%",
+    // flex: 1,
   },
-  containerBtnDelete: {
-    alignItems: "center",
-    backgroundColor: "#A7060695",
-    borderRadius: 10,
-    flexDirection: "row",
-    justifyContent: "center",
-    marginHorizontal: 5,
-    paddingVertical: 2,
-    // width: "55%",
-  },
-  btnText: {
-    fontSize: 16,
-    color: "#FFFF",
-    textAlign: "center",
-    marginHorizontal: 5,
+  mapCities: {
+    borderRadius: 15,
+    height: 120,
+    width: 330,
   },
 });

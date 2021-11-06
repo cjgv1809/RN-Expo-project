@@ -5,6 +5,12 @@ export default styles = StyleSheet.create({
     backgroundColor: "#0009",
     flex: 1,
   },
+  container2: {
+    backgroundColor: "#00176895",
+    // backgroundColor: "#8D000095",
+    // backgroundColor: "#A8840595",
+    flex: 1,
+  },
   btnContainer: {
     alignItems: "flex-end",
     flex: 1,
@@ -27,8 +33,6 @@ export default styles = StyleSheet.create({
     alignItems: "center",
     height: "52%",
     marginHorizontal: 10,
-    // width: "95%",
-    // backgroundColor: "#fff7",
   },
   containerMapCities: {
     alignItems: "center",

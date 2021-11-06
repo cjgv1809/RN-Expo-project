@@ -1,11 +1,13 @@
-import React from "react";
+import React,{useState} from "react";
 import { View, ImageBackground, SafeAreaView } from "react-native";
 import ButtonComponent from "../components/Button/Button";
 import InputComponent from "../components/Input/Input";
 import HomeHeader from "../components/HomeHeader/HomeHeader";
+import InfoModal from "../components/InfoModal/InfoModal";
 import styles from "../stylesGlobal/stylesGlobalScreen";
 
 const HomeScreen = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false)
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -14,6 +16,10 @@ const HomeScreen = ({ navigation }) => {
       >
         <View>
           <HomeHeader />
+          <InfoModal
+            visible={modalVisible}
+            onPress={() => setModalVisible(false)}
+          />
         </View>
         <View style={styles.btnContainer}>
           <ButtonComponent
@@ -24,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
           <ButtonComponent
             icon="info"
             text="Info & Uso"
-            onPress={() => console.log('Abriendo modal...')}
+            onPress={() => setModalVisible(true)}
           />
           <ButtonComponent
             icon="group"

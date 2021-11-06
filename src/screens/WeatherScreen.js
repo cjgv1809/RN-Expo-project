@@ -6,6 +6,7 @@ import HeaderTitle from "../components/HeaderTitle/HeaderTitle";
 import Weather from "../components/Weather/Weather";
 import styles from "../stylesGlobal/stylesGlobalScreen";
 
+const city='Mar del Plata'
 const WeatherScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
@@ -13,9 +14,9 @@ const WeatherScreen = ({ navigation }) => {
         source={require("../../assets/bgImage2.jpeg")}
         style={styles.image}
       >
-        <View style={styles.container}>
+        <View style={styles.container2}>
           <View>
-            <HeaderTitle title="Clima de la Ciudad" />
+            <HeaderTitle title={city} />
           </View>
           <View>
             <Weather />

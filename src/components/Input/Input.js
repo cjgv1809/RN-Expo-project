@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Alert } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { Input } from "react-native-elements";
 import fetchWeather from "../../../api";
@@ -9,6 +10,17 @@ const InputComponent = () => {
   const [city, setCity] = useState("");
 
   const search = async () => {
+    if (city.trim() === "") {
+      showAlert();
+      return;
+    }
+
+    function showAlert() {
+      Alert.alert("Error", "Este campo no puede quedar vacío", [
+        { text: "OK" },
+      ]);
+    }
+
     const data = await fetchWeather(city);
     setWeather(data);
     setCity("");
