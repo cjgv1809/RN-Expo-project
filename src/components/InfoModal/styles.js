@@ -1,24 +1,24 @@
 import { StyleSheet } from "react-native";
 
-export default styles = StyleSheet.create({
+const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: "#fff",
-    // height:480,
     borderRadius: 15,
     flex: 1,
     marginHorizontal: 10,
     marginTop: "30%",
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-
-    width: 340,
+    marginBottom: 10,
+    padding: 20,
   },
   textModal: {
     textAlign: "justify",
   },
-  btnModal: {
-    color: "red",
+  btnContainer: {
+    backgroundColor: "#B0B0AE",
     borderRadius: 15,
-    backgroundColor: 'red',
+    height: 40,
+    marginTop: 10,
   },
 });
+
+export default styles;
