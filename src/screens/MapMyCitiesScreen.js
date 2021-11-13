@@ -1,47 +1,46 @@
 import React from "react";
-import { View, SafeAreaView, ImageBackground, Image } from "react-native";
-
+import { View, SafeAreaView, ImageBackground} from "react-native";
 import ButtonComponent from "../components/Button/Button";
 import InputComponent from "../components/Input/Input";
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle";
+import MapMyCities from "../components/MapMyCities/MapMyCities";
 import styles from "../stylesGlobal/stylesGlobalScreen";
 
 const MapMyCitiesScreen = ({ navigation }) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.parentContainer}>
       <ImageBackground
-        source={require("../../assets/bgImage2.jpeg")}
-        style={styles.image}
+        source={require("../../assets/bgHome.jpg")}
+        style={styles.imageBackground}
       >
-        <View style={styles.container}>
-          <View>
+        <View style={styles.capBlack}>
+          <View style={styles.headerContainer}>
             <HeaderTitle title="Mis Ciudades" />
           </View>
-          <View style={styles.containerMapCities}>
-            <Image
-              source={require("../../assets/mapa_completo.jpg")}
-              style={styles.mapCities}
-            />
+          <View style={styles.bodyContainer}>
+           <MapMyCities/>
           </View>
-          <View style={styles.btnContainer}>
-            <ButtonComponent
-              icon="home"
-              text="Inicio"
-              onPress={() => navigation.navigate("HomeScreen")}
-            />
-            <ButtonComponent
-              icon="folder"
-              text="Mis Ciudades"
-              onPress={() => navigation.navigate("MyCitiesScreen")}
-            />
-            <ButtonComponent
-              icon="compare"
-              text="Modo Claro"
-              onPress={() => console.log("modo dark")}
-            />
-          </View>
-          <View>
-            <InputComponent />
+          <View style={styles.footerContainer}>
+            <View style={styles.btnContainer}>
+              <ButtonComponent
+                icon="home"
+                text="Inicio"
+                onPress={() => navigation.navigate("HomeScreen")}
+              />
+              <ButtonComponent
+                icon="folder"
+                text="Mis Ciudades"
+                onPress={() => navigation.navigate("MyCitiesScreen")}
+              />
+              <ButtonComponent
+                icon="compare"
+                text="Modo Claro"
+                onPress={() => console.log("modo dark")}
+              />
+            </View>
+            <View>
+              <InputComponent />
+            </View>
           </View>
         </View>
       </ImageBackground>

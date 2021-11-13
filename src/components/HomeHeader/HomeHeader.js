@@ -1,19 +1,16 @@
 import React from "react";
-import { View } from "react-native";
-import { Text } from "react-native-elements";
+import { View, Text } from "react-native";
 import styles from "./styles";
 
 const HomeHeader = () => {
   return (
     <View style={styles.headerContainer}>
-      <View style={styles.mainTextDirection}>
-        <Text h4 h4Style={styles.textStyles}>
-          <Text h3 h3Style={styles.mainText}>
-            Paula
-          </Text>{" "}
-          Weather
-          <Text style={styles.textStylesApp}>App</Text>
-        </Text>
+      <View style={styles.mainTextContainer}>
+        <Text style={styles.mainText}>Paula's</Text>
+      </View>
+      <View style={styles.subtitleTextContainer}>
+        <Text style={styles.subtitleText1}>Weather</Text>
+        <Text style={styles.subtitleText2}>App</Text>
       </View>
     </View>
   );

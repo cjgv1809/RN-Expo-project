@@ -1,44 +1,52 @@
-import React, { useState } from "react";
-import { Alert } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
-import { Input } from "react-native-elements";
-import fetchWeather from "../../../api";
-import styles from "./styles";
+import React, { useState, useContext } from "react"
+import { Alert, Keyboard } from "react-native"
+import { Input } from "react-native-elements"
+import { WeatherContext } from "../../context/WeatherContext"
+import Icon from "react-native-vector-icons/MaterialIcons"
+import styles from "./styles"
 
 const InputComponent = () => {
-  const [weather, setWeather] = useState({});
-  const [city, setCity] = useState("");
+	const [city, setCity] = useState("")
+	const { setQuery, setCityRequired } = useContext(WeatherContext)
 
-  const search = async () => {
-    if (city.trim() === "") {
-      showAlert();
-      return;
-    }
+	// Función que valida la ciudad ingresada y ejecuta la consulta //
+	const search = () => {
+		const showAlert = () => {
+			Alert.alert("Error", "Este campo no puede quedar vacío", [
+				{ text: "OK" },
+			])
+		}
+		if (city.trim() === "") {
+			showAlert()
+			return
+		}
+		console.log('realizando consulta desde input')
+		setQuery(true)
+		setCityRequired(city)
+		setCity("")
+		Keyboard.dismiss()
+	}
+	
+	return (
+		<Input
+			placeholder="Buscar ciudad"
+			type="text"
+			value={city}
+			onChange={(e) => setCity(e.nativeEvent.text)}
+			inputContainerStyle={styles.inputContainerStyle}
+			inputStyle={styles.inputStyle}
+			placeholderTextColor="white"
+			rightIcon={
+				<Icon
+					name="search"
+					size={30}
+					color="#fff"
+					onPress={search}
+				/>
+			}
+			onSubmitEditing={search}
+		/>
+	)
+}
 
-    function showAlert() {
-      Alert.alert("Error", "Este campo no puede quedar vacío", [
-        { text: "OK" },
-      ]);
-    }
-
-    const data = await fetchWeather(city);
-    setWeather(data);
-    setCity("");
-  };
-
-  return (
-    <Input
-      placeholder="Buscar ciudad"
-      type="text"
-      value={city}
-      onChange={(e) => setCity(e.nativeEvent.text)}
-      inputContainerStyle={styles.inputContainerStyle}
-      inputStyle={styles.inputStyle}
-      placeholderTextColor="white"
-      rightIcon={<Icon name="search" size={30} color="#fff" onPress={search} />}
-      onSubmitEditing={search}
-    />
-  );
-};
-
-export default InputComponent;
+export default InputComponent

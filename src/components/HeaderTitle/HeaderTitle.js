@@ -1,16 +1,15 @@
 import React from "react";
-import { View } from "react-native";
-import { Text } from "react-native-elements";
+import { View, Text } from "react-native";
 import styles from "./styles";
 
 const HeaderTitle = ({ title }) => {
   return (
     <View style={styles.headerContainer}>
-      <View style={styles.mainTextDirection}>
-        <Text h4 h4Style={styles.textStyles}>{title}</Text>
-      </View>
+      <Text style={styles.mainText}>{title}</Text>
     </View>
   );
 };
+
+
 
 export default HeaderTitle;
