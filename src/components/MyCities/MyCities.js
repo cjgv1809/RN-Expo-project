@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import { Text, View, Alert, FlatList } from "react-native"
+import { Text, View, Alert, FlatList, useWindowDimensions } from "react-native"
 import { Button } from "react-native-elements"
 import { WeatherContext } from "../../context/WeatherContext"
 import { MaterialIcons } from "@expo/vector-icons"
@@ -9,13 +9,17 @@ import styles from "./styles"
 
 const MyCities = ({ navigation }) => {
 	const [cities, setCities] = useState(initialCities)
-	const { setQuery, setCityRequired } = useContext(WeatherContext)
+	const { setQuery, setCityRequired, setWeatherCurrent, setWeatherDaily } =
+		useContext(WeatherContext)
+	const { width } = useWindowDimensions()
 
 	//Funcion para realizar la consulta del clima
 	const search = (cityName) => {
-		console.log("realizando consulta desde listado")
+		console.log("\x1b[36m%s\x1b[0m", " query from city list")
 		setQuery(true)
 		setCityRequired(cityName)
+		setWeatherCurrent({})
+		setWeatherDaily({})
 		navigation.navigate("WeatherScreen")
 	}
 
@@ -50,10 +54,15 @@ const MyCities = ({ navigation }) => {
 
 	return (
 		<FlatList
-			data={cities}
+			data={cities}			
 			renderItem={({ item }) => (
 				<View style={styles.containerCityItem}>
-					<Text style={styles.textCityList}>
+					<Text
+						style={{
+							...styles.textCityList,
+							fontSize: width < 350 ? 14 : 16,
+						}}
+					>
 						{truncate(item.cityName, 12)}
 					</Text>
 					<Animatable.View
@@ -61,30 +70,40 @@ const MyCities = ({ navigation }) => {
 						duration={1500}
 						style={styles.containerBtns}
 					>
-						<Button
-							title="Ver Clima"
-							buttonStyle={styles.containerBtnWeather}
-							onPress={() => search(item.cityName)}
-							icon={
-								<MaterialIcons
-									name="device-thermostat"
-									size={20}
-									color="#fff"
-								/>
-							}
-						/>
-						<Button
-							title="Borrar"
-							buttonStyle={styles.containerBtnDelete}
-							onPress={() => showAlert(item.id)}
-							icon={
-								<MaterialIcons
-									name="delete"
-									size={20}
-									color="#fff"
-								/>
-							}
-						/>
+						<View style={styles.btnContainer}>
+							<Button
+								title="Ver Clima"
+								titleStyle={{
+									fontSize: width < 350 ? 11 : 14,
+								}}
+								buttonStyle={styles.containerBtnWeather}
+								onPress={() => search(item.cityName)}
+								icon={
+									<MaterialIcons
+										name="device-thermostat"
+										size={20}
+										color="#fff"
+									/>
+								}
+							/>
+						</View>
+						<View style={styles.btnContainer}>
+							<Button
+								title="Borrar"
+								titleStyle={{
+									fontSize: width < 350 ? 11 : 14,
+								}}
+								buttonStyle={styles.containerBtnDelete}
+								onPress={() => showAlert(item.id)}
+								icon={
+									<MaterialIcons
+										name="delete"
+										size={20}
+										color="#fff"
+									/>
+								}
+							/>
+						</View>
 					</Animatable.View>
 				</View>
 			)}

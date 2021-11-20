@@ -43,7 +43,7 @@ const MyCitiesScreen = ({ navigation }) => {
 							/>
 						</View>
 						<View>
-							<InputComponent />
+							<InputComponent navigation={navigation} />
 						</View>
 					</View>
 				</View>

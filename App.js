@@ -11,6 +11,7 @@ import {
 } from "@expo-google-fonts/roboto-slab"
 import { Allura_400Regular } from "@expo-google-fonts/allura"
 import WeatherProvider from "./src/context/WeatherContext"
+import IconsProvider from "./src/context/IconsContext"
 
 const App = () => {
 	const [fontsLoaded] = useFonts({
@@ -24,9 +25,11 @@ const App = () => {
 	} else {
 		return (
 			<WeatherProvider>
-				<NavigationContainer style={{ flex: 1 }}>
-					<NavigationApp />
-				</NavigationContainer>
+				<IconsProvider>
+					<NavigationContainer style={{ flex: 1 }}>
+						<NavigationApp />
+					</NavigationContainer>
+				</IconsProvider>
 			</WeatherProvider>
 		)
 	}

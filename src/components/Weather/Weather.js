@@ -1,62 +1,73 @@
 import React, { useContext } from "react"
-import { Text, Image, View } from "react-native"
+import {
+	Image,
+	Text,
+	useWindowDimensions,
+	ScrollView,
+	View,
+} from "react-native"
+import * as Animatable from "react-native-animatable"
 import { WeatherContext } from "../../context/WeatherContext"
-import { FlatList } from "react-native-gesture-handler"
+import { IconsContext } from "../../context/IconsContext"
+import WeeklyDay from "../WeeklyDay/WeeklyDay"
+import WeeklyTemp from "../WeeklyTemp/WeeklyTemp"
+import WeeklyIcon from "../WeeklyIcon/WeeklyIcon"
 import styles from "./styles"
 
 const Weather = () => {
-	
+	const { width } = useWindowDimensions()
 	const { weatherCurrent, weatherDaily } = useContext(WeatherContext)
-	const { name, main, weather } = weatherCurrent
-	// const { name, main, weather } = weatherDaily
-	if (!name) return null
+	const { iconWeather } = useContext(IconsContext)
+	const { temp_min, temp_max } = weatherCurrent
+	const { temp, descriptionWeather } = weatherDaily
+
+	if (!temp) return null
+
 	return (
 		<View style={styles.parentContainer}>
-			<View style={styles.cityWeatherContainer}>
+			<View style={styles.weatherCurrentContainer}>
+				<Animatable.View
+					animation={"bounceInLeft"}
+					duration={3500}
+					style={styles.iconWeatherContainer}
+				>
+					<Image source={iconWeather} style={styles.iconWeather} />
+				</Animatable.View>
 				<View style={styles.infoWeatherContainer}>
-					<View style={styles.textWeatherContainer}>
-						<Text style={styles.textWeather}>
-							Clima{"\n"}Actual
+					<Text
+						style={{
+							...styles.currentTemp,
+							fontSize: width < 350 ? 55 : 60,
+						}}
+					>
+						{parseFloat(temp).toFixed(1)}°C
+					</Text>
+					<View style={styles.temMinMaxContainer}>
+						<Text style={styles.textInfoMinMax}> Min </Text>
+						<Text style={styles.temMinMax}>
+							{parseFloat(temp_min).toFixed(1)}°C /
+						</Text>
+						<Text style={styles.textInfoMinMax}> Max </Text>
+						<Text style={styles.temMinMax}>
+							{parseFloat(temp_max).toFixed(1)}°C{" "}
 						</Text>
 					</View>
-					<View style={styles.weatherCurrentContainer}>
-						<Image
-							source={{
-								uri: `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
-							}}
-							style={styles.iconWeather}
-						/>
-						<Text style={styles.textWeather}>
-							{weather[0].description}
-						</Text>
-						<Text style={styles.currentTemp}>
-							{parseFloat(main.temp).toFixed(1)} °
-						</Text>
-					</View>
-				</View>
-
-				<View style={styles.weatherMaxMinContainer}>
-					<View style={styles.temMin}>
-						<Text style={styles.textInfoMaxMin}>Tem{"\n"}Min</Text>
-						<Text>{parseFloat(main.temp_min).toFixed(1)}°</Text>
-						<Text style={styles.textInfoMaxMin}>03:00{"\n"}am</Text>
-					</View>
-					<View style={styles.temMax}>
-						<Text style={styles.textInfoMaxMin}>Tem{"\n"}Max</Text>
-						<Text>{parseFloat(main.temp_max).toFixed(1)}°</Text>
-						<Text style={styles.textInfoMaxMin}>01:00{"\n"}pm</Text>
-					</View>
+					<Text style={styles.textWeatherCurrent}>
+						{descriptionWeather}
+					</Text>
 				</View>
 			</View>
-			<View style={styles.weatherWeekContainer}>
-				<FlatList style={styles.weatherWeekList} />
+			<View style={styles.weatherWeekList}>
+				<WeeklyDay />
+				<WeeklyTemp />
+				<WeeklyIcon />
 			</View>
-			<View style={styles.mapCitiesContainer}>
+			<ScrollView style={styles.mapCitiesContainer}>
 				<Image
 					source={require("../../../assets/mapa.jpg")}
 					style={styles.mapCities}
 				/>
-			</View>
+			</ScrollView>
 		</View>
 	)
 }

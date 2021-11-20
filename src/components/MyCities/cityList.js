@@ -1,6 +1,6 @@
 const initialCities = [
-	{ id: "1", cityName: "Mar Chiquita" },
-	{ id: "2", cityName: "Mar de Ajó" },
+	{ id: "1", cityName: "Cariló" },
+	{ id: "2", cityName: "Mar Chiquita" },
 	{ id: "3", cityName: "Mar del Plata" },
 	{ id: "4", cityName: "Mar del Sur" },
 	{ id: "5", cityName: "Miramar" },

@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({	
 	containerCityItem: {
 		alignItems: "center",
 		backgroundColor: "#0005",
 		borderRadius: 15,
+		flex: 1,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		marginBottom: 5,
@@ -12,28 +13,30 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 10,
 	},
 	textCityList: {
-		color: "#FFFF",
-		fontSize: 15,
+		color: "#FFA600",
+		flex: 1,
+		fontFamily: "RobotoSlab_600SemiBold",
 	},
 	containerBtns: {
+		flex: 2,
 		flexDirection: "row",
+		justifyContent: "space-around",
 		marginVertical: 10,
 		marginRight: -5,
+	},
+	btnContainer: {
+		flex: 1,
+		marginHorizontal: 3,
 	},
 	containerBtnWeather: {
 		backgroundColor: "#B0B0AE70",
 		borderRadius: 10,
 		flexDirection: "row",
-		height: 35,
-		marginHorizontal: 5,
 	},
 	containerBtnDelete: {
 		backgroundColor: "#A7060695",
 		borderRadius: 10,
 		flexDirection: "row",
-		height: 35,
-		marginHorizontal: 5,
-		width: 101,
 	},
 })
 
