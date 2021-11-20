@@ -24,7 +24,7 @@ const HomeScreen = ({ navigation }) => {
 						<Animatable.Image
 							source={require("../../assets/anagrama.png")}
 							animation={"bounceIn"}
-							duration={3000}
+							duration={3500}
 							style={styles.anagrama}
 						/>
 						<View>
@@ -57,7 +57,7 @@ const HomeScreen = ({ navigation }) => {
 							/>
 						</View>
 						<View>
-							<InputComponent />
+							<InputComponent navigation={navigation} />
 						</View>
 					</View>
 				</View>

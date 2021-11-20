@@ -37,13 +37,13 @@ const AboutUsScreen = ({ navigation }) => {
 								}
 							/>
 							<ButtonComponent
-								icon="compare"
+								icon="brightness-4"
 								text="Modo Claro"
 								onPress={() => console.log("modo dark")}
 							/>
 						</View>
 						<View>
-							<InputComponent />
+							<InputComponent navigation={navigation} />
 						</View>
 					</View>
 				</View>

@@ -27,7 +27,7 @@ const ButtonComponent = ({ icon, text, onPress, type }) => {
 				title={text}
 				titleStyle={{
 					...styles.btnTitleStyle,
-					fontSize: width < 350 ? 10 : 14,
+					fontSize: width < 350 ? 11 : 14,
 				}}
 				type={type}
 			/>

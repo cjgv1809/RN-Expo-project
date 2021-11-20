@@ -1,26 +1,21 @@
-import React from "react";
-import { View, Modal, useWindowDimensions } from "react-native"
-import { Icon} from "react-native-elements"
-import * as Animatable from "react-native-animatable";
-import styles from "./styles";
-import { Button } from "react-native-elements/dist/buttons/Button";
+import React from "react"
+import { View, Modal, ScrollView, useWindowDimensions } from "react-native"
+import { Icon } from "react-native-elements"
+import * as Animatable from "react-native-animatable"
+import styles from "./styles"
+import { Button } from "react-native-elements/dist/buttons/Button"
 
 const InfoModal = ({ visible, onPress }) => {
-  const { width } = useWindowDimensions()
-  return (
-		<Modal
-			animationType="fade"
-			visible={visible}
-			transparent
-			
-		>
+	const { width } = useWindowDimensions()
+	return (
+		<Modal animationType="fade" visible={visible} transparent>
 			<View
 				style={{
 					...styles.modalContainer,
 					marginTop: width < 350 ? "38%" : "30%",
 				}}
 			>
-				{/* <ScrollView>
+				<ScrollView>
 					<Animatable.Text
 						animation="fadeInUpBig"
 						duration={1500}
@@ -46,23 +41,9 @@ const InfoModal = ({ visible, onPress }) => {
 						metus sed velit finibus scelerisque. Proin a tellus non
 						orci vulputate vehicula. Ut ultrices, metus et posuere
 						egestas, odio arcu rhoncus turpis, a egestas lectus elit
-						et augue. Aliquam eu enim eget libero condimentum
-						vestibulum ac eu est. Pellentesque sagittis vestibulum
-						rutrum. Nunc consectetur mauris vel volutpat semper.
-						Nunc aliquet tellus a ante sollicitudin, eu commodo
-						lacus fringilla. Curabitur lacinia tristique nibh sed
-						tincidunt. Mauris placerat purus vel lacus tincidunt
-						laoreet. Donec condimentum dictum sem, in interdum neque
-						congue fermentum. Nam malesuada quam ut ex sagittis,
-						vitae dignissim tortor ullamcorper. Nullam ligula est,
-						vestibulum a auctor et, egestas sit amet urna. Fusce
-						quis dui ipsum. Donec commodo massa at dictum ultrices.
-						In hac habitasse platea dictumst. Duis mollis auctor
-						lacus fermentum pulvinar. Mauris eget lectus tempus
-						massa tincidunt ultricies ac in leo. Vivamus malesuada
-						ullamcorper orci quis pretium.
+						et augue.
 					</Animatable.Text>
-				</ScrollView> */}
+				</ScrollView>
 				<View style={styles.btnContainer}>
 					<Button
 						icon={<Icon name="close" color="#fff" />}
@@ -73,7 +54,7 @@ const InfoModal = ({ visible, onPress }) => {
 				</View>
 			</View>
 		</Modal>
-  )
-};
+	)
+}
 
-export default InfoModal;
+export default InfoModal
