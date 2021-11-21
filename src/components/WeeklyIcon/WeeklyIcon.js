@@ -7,53 +7,31 @@ import styles from "./styles"
 
 const WeeklyIcon = () => {
 	const { weatherDaily } = useContext(WeatherContext)
-	const { ICONS_WEATHER, iconWeather } = useContext(IconsContext)
+	const { ICONS_WEATHER } = useContext(IconsContext)
 	const { daily } = weatherDaily
 	const days = daily.slice(1, 6)
-
 	const iconsApi = days.map((icon) => icon.weather[0].icon)
-	const iconsWeek = []
 
+	const listIcons = []
 	
-	console.log(iconsApi)
-	console.log(Object.values(ICONS_WEATHER))
+	for (let i = 0; i < 5; i++) {
+		const iconWeatherReplaced = ICONS_WEATHER[iconsApi[i]]
+		listIcons.push(iconWeatherReplaced)
+	}
+
 	return (
 		<View style={styles.iconWeatherWeekContainer}>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInLeftBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInRightBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInLeftBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInRightBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInLeftBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
+			{listIcons.map((icon, i) => (
+				<View style={styles.iconWeatherContainer} key={i}>
+					<Animatable.Image
+						source={icon}
+						animation={"fadeInLeftBig"}
+						duration={2500}
+						delay={200}
+						style={styles.iconWeatherWeek}
+					/>
+				</View>
+			))}
 		</View>
 	)
 }

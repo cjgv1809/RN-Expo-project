@@ -1,11 +1,12 @@
-import React, { useState, useContext, useEffect } from "react"
-import { Alert, Keyboard } from "react-native"
+import React, { useState, useContext } from "react"
+import { Modal, Alert, Keyboard, View } from "react-native"
 import { Input } from "react-native-elements"
 import { WeatherContext } from "../../context/WeatherContext"
+import * as Animatable from "react-native-animatable"
 import Icon from "react-native-vector-icons/MaterialIcons"
 import styles from "./styles"
 
-const InputComponent = ({ navigation }) => {
+const InputComponent = ({ navigation, visible, onPress }) => {
 	const [cityName, setCityName] = useState("")
 	const { setQuery, setCityRequired, setWeatherCurrent, setWeatherDaily } =
 		useContext(WeatherContext)
@@ -34,19 +35,28 @@ const InputComponent = ({ navigation }) => {
 	}
 
 	return (
-		<Input
-			placeholder="Buscar ciudad"
-			type="text"
-			value={cityName}
-			onChange={(e) => setCityName(e.nativeEvent.text)}
-			inputContainerStyle={styles.inputContainerStyle}
-			inputStyle={styles.inputStyle}
-			placeholderTextColor="white"
-			rightIcon={
-				<Icon name="search" size={30} color="#fff" onPress={search} />
-			}
-			onSubmitEditing={search}
-		/>
+		// <Modal animationType="fade" visible={visible} transparent>
+			// <Animatable.View animation="fadeInUpBig" duration={1500}>
+				<Input
+					placeholder="Buscar ciudad"
+					type="text"
+					value={cityName}
+					onChange={(e) => setCityName(e.nativeEvent.text)}
+					inputContainerStyle={styles.inputContainerStyle}
+					inputStyle={styles.inputStyle}
+					placeholderTextColor="white"
+					rightIcon={
+						<Icon
+							name="search"
+							size={30}
+							color="#fff"
+							onPress={search}
+						/>
+					}
+					onSubmitEditing={search}
+				/>
+			// </Animatable.View>
+		// </Modal>
 	)
 }
 

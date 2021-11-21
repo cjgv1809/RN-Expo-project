@@ -34,40 +34,44 @@ const Weather = () => {
 					<Image source={iconWeather} style={styles.iconWeather} />
 				</Animatable.View>
 				<View style={styles.infoWeatherContainer}>
-					<Text
-						style={{
-							...styles.currentTemp,
-							fontSize: width < 350 ? 55 : 60,
-						}}
-					>
-						{parseFloat(temp).toFixed(1)}°C
-					</Text>
+					<View style={styles.textCurrentTempContainer}>
+						<Text
+							style={{
+								...styles.textCurrentTemp,
+								fontSize: width < 350 ? 55 : 60,
+							}}
+						>
+							{parseFloat(temp).toFixed(1)}
+						</Text>
+						<Text style={styles.textCelciusBigDegrees}>°</Text>
+						<Text style={styles.textCelciusBig}>C</Text>
+					</View>
 					<View style={styles.temMinMaxContainer}>
 						<Text style={styles.textInfoMinMax}> Min </Text>
 						<Text style={styles.temMinMax}>
-							{parseFloat(temp_min).toFixed(1)}°C /
+							{parseFloat(temp_min).toFixed(1)}°
+							<Text style={styles.textCelcius}>C</Text> /
 						</Text>
 						<Text style={styles.textInfoMinMax}> Max </Text>
 						<Text style={styles.temMinMax}>
-							{parseFloat(temp_max).toFixed(1)}°C{" "}
+							{parseFloat(temp_max).toFixed(1)}°
+							<Text style={styles.textCelcius}>C</Text>
 						</Text>
 					</View>
-					<Text style={styles.textWeatherCurrent}>
+					<Text style={styles.textDescriptionWeatherCurrent}>
 						{descriptionWeather}
 					</Text>
 				</View>
 			</View>
-			<View style={styles.weatherWeekList}>
+			<View style={styles.weatherWeekListContainer}>
 				<WeeklyDay />
 				<WeeklyTemp />
 				<WeeklyIcon />
 			</View>
-			<ScrollView style={styles.mapCitiesContainer}>
-				<Image
-					source={require("../../../assets/mapa.jpg")}
-					style={styles.mapCities}
-				/>
-			</ScrollView>
+			<Image
+				source={require("../../../assets/mapa.jpg")}
+				style={styles.mapCities}
+			/>
 		</View>
 	)
 }

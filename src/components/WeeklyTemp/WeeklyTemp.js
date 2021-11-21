@@ -12,7 +12,7 @@ const WeeklyTemp = () => {
 	const days = daily.slice(1, 6)	
 
 	return (
-		<View style={styles.weatherWeekListContainer}>
+		<View>
 			<FlatList
 				data={days}
 				numColumns={5}

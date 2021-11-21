@@ -2,7 +2,7 @@ import React from "react"
 import { View, ImageBackground, SafeAreaView } from "react-native"
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle"
 import ButtonComponent from "../components/Button/Button"
-import InputComponent from "../components/Input/Input"
+import InputButton from "../components/InputButton/InputButton"
 import AboutUs from "../components/AboutUs/AboutUs"
 import styles from "../stylesGlobal/stylesGlobalScreen"
 
@@ -43,7 +43,7 @@ const AboutUsScreen = ({ navigation }) => {
 							/>
 						</View>
 						<View>
-							<InputComponent navigation={navigation} />
+							<InputButton />
 						</View>
 					</View>
 				</View>

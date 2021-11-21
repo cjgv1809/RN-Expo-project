@@ -6,9 +6,9 @@ import {
 	ActivityIndicator,
 } from "react-native"
 import { WeatherContext } from "../context/WeatherContext"
-import ButtonComponent from "../components/Button/Button"
-import InputComponent from "../components/Input/Input"
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle"
+import ButtonComponent from "../components/Button/Button"
+import InputButton from "../components/InputButton/InputButton"
 import Weather from "../components/Weather/Weather"
 import styles from "../stylesGlobal/stylesGlobalScreen"
 
@@ -64,11 +64,11 @@ const WeatherScreen = ({ navigation }) => {
 							<ButtonComponent
 								icon="queue"
 								text="Agregar"
-								onPress={() => console.log('ciudad agregada')}
+								onPress={() => console.log("ciudad agregada")}
 							/>
 						</View>
 						<View>
-							<InputComponent navigation={navigation} />
+							<InputButton />
 						</View>
 					</View>
 				</View>

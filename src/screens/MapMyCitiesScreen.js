@@ -1,8 +1,8 @@
 import React from "react"
 import { View, SafeAreaView, ImageBackground } from "react-native"
-import ButtonComponent from "../components/Button/Button"
-import InputComponent from "../components/Input/Input"
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle"
+import ButtonComponent from "../components/Button/Button"
+import InputButton from "../components/InputButton/InputButton"
 import MapMyCities from "../components/MapMyCities/MapMyCities"
 import styles from "../stylesGlobal/stylesGlobalScreen"
 
@@ -43,7 +43,7 @@ const MapMyCitiesScreen = ({ navigation }) => {
 							/>
 						</View>
 						<View>
-							<InputComponent navigation={navigation} />
+							<InputButton />
 						</View>
 					</View>
 				</View>

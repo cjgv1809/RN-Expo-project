@@ -32,8 +32,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginHorizontal: 5,
 	},
-
-
 })
 
 export default styles;

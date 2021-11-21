@@ -1,14 +1,15 @@
 import React, { useState } from "react"
+
 import { View, ImageBackground, SafeAreaView } from "react-native"
 import * as Animatable from "react-native-animatable"
 import HomeHeader from "../components/HomeHeader/HomeHeader"
 import ButtonComponent from "../components/Button/Button"
-import InputComponent from "../components/Input/Input"
+import InputButton from "../components/InputButton/InputButton"
 import InfoModal from "../components/InfoModal/InfoModal"
 import styles from "../stylesGlobal/stylesGlobalScreen"
 
 const HomeScreen = ({ navigation }) => {
-	const [modalVisible, setModalVisible] = useState(false)
+	const [modalInfoVisible, setModalInfoVisible] = useState(false)
 
 	return (
 		<SafeAreaView style={styles.parentContainer}>
@@ -29,8 +30,8 @@ const HomeScreen = ({ navigation }) => {
 						/>
 						<View>
 							<InfoModal
-								visible={modalVisible}
-								onPress={() => setModalVisible(false)}
+								visible={modalInfoVisible}
+								onPress={() => setModalInfoVisible(false)}
 							/>
 						</View>
 					</View>
@@ -46,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
 							<ButtonComponent
 								icon="info"
 								text="Info & Uso"
-								onPress={() => setModalVisible(true)}
+								onPress={() => setModalInfoVisible(true)}
 							/>
 							<ButtonComponent
 								icon="group"
@@ -57,7 +58,7 @@ const HomeScreen = ({ navigation }) => {
 							/>
 						</View>
 						<View>
-							<InputComponent navigation={navigation} />
+							<InputButton />
 						</View>
 					</View>
 				</View>

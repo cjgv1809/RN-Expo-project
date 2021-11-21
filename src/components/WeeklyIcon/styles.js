@@ -2,14 +2,17 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
 	iconWeatherWeekContainer: {
-		alignItems: "center",
+		flex: 1,
 		flexDirection: "row",
-		justifyContent: "space-around",
-		// backgroundColor: "orange",
+	},
+	iconWeatherContainer: {
+		alignItems: "center",
+		flex: 1,
 	},
 	iconWeatherWeek: {
-		width: 35,
-		height: 40,
+		marginTop: -10,
+		flex: 1,
+		width: 50,
 	},
 })
 

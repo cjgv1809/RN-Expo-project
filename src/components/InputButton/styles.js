@@ -1,8 +1,10 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 	btnContainer: {
-		flex: 1,
+		marginBottom: 5,
+		marginTop: 5,
+		paddingHorizontal: 5,
 	},
 	btnStyle: {
 		backgroundColor: "#B0B0AE85",
@@ -10,9 +12,11 @@ const styles = StyleSheet.create({
 		marginBottom: 5,
 		marginHorizontal: 5,
 		alignItems: "center",
+		justifyContent:'flex-start'
 	},
 	btnTitleStyle: {
-		color: "#fff",
+		marginHorizontal: 10,
+		marginRight: '60%'
 	},
 })
 

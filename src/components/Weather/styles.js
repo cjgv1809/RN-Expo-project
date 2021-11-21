@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
 	},
 	weatherCurrentContainer: {
 		alignItems: "center",
-		flex: 1.5,
+		flex: 1.3,
 		flexDirection: "row",
 	},
 	iconWeatherContainer: {
@@ -23,15 +23,27 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		flex: 1,
 	},
-	currentTemp: {
-		flex: 3,
+	textCurrentTempContainer: {
+		flexDirection: "row",
+		marginTop: "5%",
+	},
+	textCurrentTemp: {
 		color: "#fff",
 		fontFamily: "RobotoSlab_900Black",
+		textAlign: "center",
+	},
+	textCelciusBigDegrees: {
+		color: "#CFCDCD",
+		fontSize: 40,
+		marginTop: "3%",
+		marginLeft: 3,
+	},
+	textCelciusBig: {
+		color: "#CFCDCD",
+		fontSize: 30,
 		marginTop: "5%",
-		marginRight: "-10%",
 	},
 	temMinMaxContainer: {
-		flex: 1,
 		flexDirection: "row",
 	},
 	textInfoMinMax: {
@@ -39,26 +51,30 @@ const styles = StyleSheet.create({
 		fontFamily: "RobotoSlab_400Regular",
 	},
 	temMinMax: {
-		flexDirection: "row",
 		color: "#fff",
 	},
-	textWeatherCurrent: {
-		color: "#fff9",
+	textCelcius: {
+		color: "#CFCDCD",
+	},
+	textDescriptionWeatherCurrent: {
+		color: "#FFF",
 		flex: 1,
-		fontSize: 13,
+		fontSize: 11,
+		marginTop: 10,
 		textAlign: "center",
+		letterSpacing: 1,
 	},
-	weatherWeekList: {
-		flex:.9,
-		// backgroundColor: "red",
-	},
-	mapCitiesContainer: {
-		borderRadius: 10,
-		flex: 1,
-		marginBottom: 5,
+	weatherWeekListContainer: {
+		flex: 0.9,
+		justifyContent: "center",
 	},
 	mapCities: {
+		borderRadius: 10,
 		flex: 1,
+		resizeMode: "cover",
+		width: "100%",
+		backgroundColor: "#B0B0AE85",
+		marginBottom:-10,
 	},
 })
 
