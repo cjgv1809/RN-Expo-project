@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react"
 import { Alert } from "react-native"
 import axios from "axios"
-import { API_KEY_1, API_KEY_2 } from "@env"
+import { API_KEY_1, API_KEY_2 } from '@env'
 
 export const WeatherContext = createContext()
 

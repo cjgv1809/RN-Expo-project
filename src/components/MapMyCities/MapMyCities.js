@@ -3,6 +3,7 @@ import styles from './styles'
 import MapView, { UrlTile } from "react-native-maps";
 import { View } from "react-native";
 import * as Location from "expo-location";
+import { MAP_APP_ID } from '@env';
 
 const MapMyCities = () => {
 	function Map() {
@@ -44,7 +45,7 @@ const MapMyCities = () => {
 				>
 				<UrlTile
                     zIndex={1}
-                    urlTemplate={'https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=c9084af619bc3b0f3ccf809b512ef4b0'}
+                    urlTemplate={`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${MAP_APP_ID}`}
                 />
 				</MapView>
 			  )}
