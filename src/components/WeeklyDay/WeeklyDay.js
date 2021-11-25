@@ -3,7 +3,7 @@ import { View, FlatList, Text, useWindowDimensions } from "react-native"
 
 import styles from "./styles"
 
-const day = (new Date().getDay() + 1)
+const day = new Date().getDay() + 1
 const WEEKS = {
 	1: ["Lun", "Mar", "Mie", "Jue", "Vie"],
 	2: ["Mar", "Mie", "Jue", "Vie", "Sab"],
@@ -17,7 +17,7 @@ const WEEKS = {
 const weekdays = WEEKS[day]
 
 const WeeklyDay = () => {
-	const { width } = useWindowDimensions()	
+	const { width } = useWindowDimensions()
 
 	return (
 		<View style={styles.dayWeekContainer}>
@@ -27,7 +27,7 @@ const WeeklyDay = () => {
 						...styles.textDayWeek,
 						fontSize: width < 350 ? 10 : 11,
 					}}
-					key={i}
+					key={i.toString()}
 				>
 					{day}
 				</Text>

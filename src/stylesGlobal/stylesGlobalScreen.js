@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
 	parentContainer: {
@@ -32,8 +32,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginHorizontal: 5,
 	},
-
-
 })
 
-export default styles;
+export default styles

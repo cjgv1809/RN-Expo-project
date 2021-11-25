@@ -13,14 +13,14 @@ const WeatherProvider = ({ children }) => {
 	const [weatherDaily, setWeatherDaily] = useState({})
 
 	// const {temp} = weatherDaily.current
-if (!weatherDaily) return null
+	if (!weatherDaily) return null
+
 	useEffect(() => {
-		//Función que ejecuta la consulta el clima actual
+		// Función que ejecuta la consulta el clima actual
 		const getWeatherCurrent = async () => {
 			if (query) {
 				try {
-					const urlWeatherCurrent = `http://api.openweathermap.org/data/2.5/weather?q=${cityRequired},AR&appid=${API_KEY_1}&units=metric&lang=es`
-					console.log(urlWeatherCurrent)
+					const urlWeatherCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${cityRequired},AR&appid=${API_KEY_1}&units=metric&lang=es`
 
 					const dataWeatherCurrent = await axios.get(
 						urlWeatherCurrent,
@@ -30,8 +30,7 @@ if (!weatherDaily) return null
 					setWeatherNameCity(name)
 					setWeatherCurrent(main)
 
-					const urlWeatherDaily = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY_2}&units=metric&lang=es`
-					console.log(urlWeatherDaily)
+					const urlWeatherDaily = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY_2}&units=metric&lang=es`
 
 					const dataWeatherDaily = await axios.get(urlWeatherDaily)
 					const { current, daily } = dataWeatherDaily.data
@@ -39,7 +38,7 @@ if (!weatherDaily) return null
 					const { description, icon } = weather[0]
 					// const { iconsWeek } = daily.weather[0].icon
 					const descriptionWeather = description.toUpperCase()
-					
+
 					setWeatherDaily({
 						temp,
 						descriptionWeather,

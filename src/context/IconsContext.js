@@ -43,11 +43,13 @@ const IconsProvider = ({ children }) => {
 	const { weatherDaily } = useContext(WeatherContext)
 	const { icon } = weatherDaily
 
+	const iconWeatherReplaced = ICONS_WEATHER[icon] || ""
+
+	console.log("iconWeatherReplaced", iconWeatherReplaced)
+
 	useEffect(() => {
 		setIconWeather(iconWeatherReplaced)
 	}, [icon])
-
-	const iconWeatherReplaced = ICONS_WEATHER[icon]
 
 	return (
 		<IconsContext.Provider value={{ iconWeather, ICONS_WEATHER }}>

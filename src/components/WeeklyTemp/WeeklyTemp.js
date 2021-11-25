@@ -8,8 +8,8 @@ const WeeklyTemp = () => {
 	const { width } = useWindowDimensions()
 	const { weatherDaily } = useContext(WeatherContext)
 
-	const { daily } = weatherDaily	
-	const days = daily.slice(1, 6)	
+	const { daily } = weatherDaily
+	const days = daily.slice(1, 6)
 
 	return (
 		<View style={styles.weatherWeekListContainer}>

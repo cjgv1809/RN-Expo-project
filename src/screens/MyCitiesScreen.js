@@ -1,19 +1,29 @@
-import React from "react"
+import React, { useContext } from "react"
 import { View, SafeAreaView, ImageBackground } from "react-native"
 import ButtonComponent from "../components/Button/Button"
 import InputComponent from "../components/Input/Input"
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle"
 import MyCities from "../components/MyCities/MyCities"
 import styles from "../stylesGlobal/stylesGlobalScreen"
+import { useTheme } from "@react-navigation/native"
+import { PreferencesContext } from "../context/ThemeContext"
 
 const MyCitiesScreen = ({ navigation }) => {
+	const { toggleTheme, themeDark } = useContext(PreferencesContext)
+	const { colors } = useTheme()
+
 	return (
 		<SafeAreaView style={styles.parentContainer}>
 			<ImageBackground
 				source={require("../../assets/bgHome.jpg")}
 				style={styles.imageBackground}
 			>
-				<View style={styles.capBlack}>
+				<View
+					style={[
+						styles.capBlack,
+						{ backgroundColor: colors.background },
+					]}
+				>
 					<View style={styles.headerContainer}>
 						<HeaderTitle title="Mis Ciudades" />
 					</View>
@@ -37,9 +47,11 @@ const MyCitiesScreen = ({ navigation }) => {
 								}
 							/>
 							<ButtonComponent
-								icon="brightness-4"
-								text="Modo Claro"
-								onPress={() => console.log("modo dark")}
+								icon={
+									themeDark ? "brightness-5" : "brightness-3"
+								}
+								text={themeDark ? "Modo Claro" : "Modo Oscuro"}
+								onPress={() => toggleTheme()}
 							/>
 						</View>
 						<View>

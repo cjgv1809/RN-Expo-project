@@ -12,48 +12,21 @@ const WeeklyIcon = () => {
 	const days = daily.slice(1, 6)
 
 	const iconsApi = days.map((icon) => icon.weather[0].icon)
-	const iconsWeek = []
 
-	
-	console.log(iconsApi)
-	console.log(Object.values(ICONS_WEATHER))
+	const newIcons = iconsApi.map((icon) => ICONS_WEATHER[icon])
+
 	return (
 		<View style={styles.iconWeatherWeekContainer}>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInLeftBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInRightBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInLeftBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInRightBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
-			<Animatable.Image
-				source={iconWeather}
-				animation={"fadeInLeftBig"}
-				duration={2500}
-				delay={200}
-				style={styles.iconWeatherWeek}
-			/>
+			{newIcons.map((icon, index) => (
+				<Animatable.Image
+					key={index}
+					source={icon}
+					animation={"fadeInRightBig"}
+					duration={2500}
+					delay={200}
+					style={styles.iconWeatherWeek}
+				/>
+			))}
 		</View>
 	)
 }

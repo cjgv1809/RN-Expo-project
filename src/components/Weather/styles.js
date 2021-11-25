@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 	weatherWeekList: {
-		flex:.9,
+		flex: 0.9,
 		// backgroundColor: "red",
 	},
 	mapCitiesContainer: {

@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		flexDirection: "row",
 		justifyContent: "space-around",
-		// backgroundColor: "orange",
 	},
 	iconWeatherWeek: {
 		width: 35,

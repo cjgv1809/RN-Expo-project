@@ -28,7 +28,7 @@ const WeatherScreen = ({ navigation }) => {
 			setBgColor("#001E8795")
 		} else if (weatherDaily.temp >= 14 && weatherDaily.temp < 29) {
 			setBgColor("#976D0399")
-		} else if (weatherDaily.temp >= 29) {
+		} else {
 			setBgColor("#8D000085")
 		}
 		setGeting(false)
@@ -64,7 +64,7 @@ const WeatherScreen = ({ navigation }) => {
 							<ButtonComponent
 								icon="queue"
 								text="Agregar"
-								onPress={() => console.log('ciudad agregada')}
+								onPress={() => console.log("ciudad agregada")}
 							/>
 						</View>
 						<View>
