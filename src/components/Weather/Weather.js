@@ -13,6 +13,7 @@ import WeeklyDay from "../WeeklyDay/WeeklyDay"
 import WeeklyTemp from "../WeeklyTemp/WeeklyTemp"
 import WeeklyIcon from "../WeeklyIcon/WeeklyIcon"
 import styles from "./styles"
+import MapWeather from "../MapWeather/MapWeather"
 
 const Weather = () => {
 	const { width } = useWindowDimensions()
@@ -62,12 +63,9 @@ const Weather = () => {
 				<WeeklyTemp />
 				<WeeklyIcon />
 			</View>
-			<ScrollView style={styles.mapCitiesContainer}>
-				<Image
-					source={require("../../../assets/mapa.jpg")}
-					style={styles.mapCities}
-				/>
-			</ScrollView>
+			<View style={styles.mapContainer}>
+				<MapWeather styles={styles.mapCities}/>
+			</View>
 		</View>
 	)
 }

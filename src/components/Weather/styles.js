@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
 	parentContainer: {
 		flex: 1,
 		marginHorizontal: 12,
+		flexDirection: "column"
 	},
 	weatherCurrentContainer: {
 		alignItems: "center",
@@ -17,21 +18,19 @@ const styles = StyleSheet.create({
 	},
 	iconWeather: {
 		width: "115%",
-		height: "205%",
+		height: "205%"
 	},
 	infoWeatherContainer: {
 		alignItems: "center",
-		flex: 1,
+		flex: 0.7,
 	},
 	currentTemp: {
-		flex: 3,
 		color: "#fff",
 		fontFamily: "RobotoSlab_900Black",
 		marginTop: "5%",
 		marginRight: "-10%",
 	},
 	temMinMaxContainer: {
-		flex: 1,
 		flexDirection: "row",
 	},
 	textInfoMinMax: {
@@ -39,26 +38,23 @@ const styles = StyleSheet.create({
 		fontFamily: "RobotoSlab_400Regular",
 	},
 	temMinMax: {
-		flexDirection: "row",
 		color: "#fff",
 	},
 	textWeatherCurrent: {
 		color: "#fff9",
-		flex: 1,
 		fontSize: 13,
 		textAlign: "center",
 	},
 	weatherWeekList: {
-		flex:.9,
-		// backgroundColor: "red",
-	},
-	mapCitiesContainer: {
-		borderRadius: 10,
 		flex: 1,
-		marginBottom: 5,
 	},
 	mapCities: {
-		flex: 1,
+		borderRadius: 10,
+		width: "100%",
+		height: "100%"
+	},
+	mapContainer: {
+		flex: 1
 	},
 })
 
