@@ -1,21 +1,18 @@
 import React, { useContext } from "react"
-import { View } from "react-native"
-import * as Animatable from "react-native-animatable"
+import { View, Image } from "react-native"
 import { WeatherContext } from "../../context/WeatherContext"
-import { IconsContext } from "../../context/IconsContext"
+import IconsApp from "../../../assets/iconsApp/iconsApp"
 import styles from "./styles"
 
-const WeeklyIcon = () => {
+const WeeklyIcon = () => {	
 	const { weatherDaily } = useContext(WeatherContext)
-	const { ICONS_WEATHER } = useContext(IconsContext)
-	const { daily } = weatherDaily
-	const days = daily.slice(1, 6)
-	const iconsApi = days.map((icon) => icon.weather[0].icon)
+	const { iconsApi } = weatherDaily
 
+	if (!iconsApi) return null
 	const listIcons = []
-	
+
 	for (let i = 0; i < 5; i++) {
-		const iconWeatherReplaced = ICONS_WEATHER[iconsApi[i]]
+		const iconWeatherReplaced = IconsApp[iconsApi[i]]
 		listIcons.push(iconWeatherReplaced)
 	}
 
@@ -23,11 +20,8 @@ const WeeklyIcon = () => {
 		<View style={styles.iconWeatherWeekContainer}>
 			{listIcons.map((icon, i) => (
 				<View style={styles.iconWeatherContainer} key={i}>
-					<Animatable.Image
-						source={icon}
-						animation={"fadeInLeftBig"}
-						duration={2500}
-						delay={200}
+					<Image
+						source={icon}					
 						style={styles.iconWeatherWeek}
 					/>
 				</View>

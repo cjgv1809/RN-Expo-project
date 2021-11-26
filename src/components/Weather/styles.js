@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 	},
 	iconWeather: {
 		width: "115%",
-		height: "205%",
+		height: "190%",
 	},
 	infoWeatherContainer: {
 		alignItems: "center",
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 	},
 	textCurrentTempContainer: {
 		flexDirection: "row",
-		marginTop: "5%",
+		marginTop: "18%",
 	},
 	textCurrentTemp: {
 		color: "#fff",
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
 	},
 	temMinMaxContainer: {
 		flexDirection: "row",
+		marginTop: "10%",
 	},
 	textInfoMinMax: {
 		color: "#CFCDCD",
@@ -67,14 +68,6 @@ const styles = StyleSheet.create({
 	weatherWeekListContainer: {
 		flex: 0.9,
 		justifyContent: "center",
-	},
-	mapCities: {
-		borderRadius: 10,
-		flex: 1,
-		resizeMode: "cover",
-		width: "100%",
-		backgroundColor: "#B0B0AE85",
-		marginBottom:-10,
 	},
 })
 

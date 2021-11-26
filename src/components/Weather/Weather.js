@@ -1,77 +1,104 @@
-import React, { useContext } from "react"
-import {
-	Image,
-	Text,
-	useWindowDimensions,
-	ScrollView,
-	View,
-} from "react-native"
+import React, { useContext, useEffect, useState } from "react"
+import { Image, Text, useWindowDimensions, View } from "react-native"
 import * as Animatable from "react-native-animatable"
 import { WeatherContext } from "../../context/WeatherContext"
-import { IconsContext } from "../../context/IconsContext"
+import IconsApp from "../../../assets/iconsApp/iconsApp"
+import anagrama from "../../../assets/anagrama.png"
 import WeeklyDay from "../WeeklyDay/WeeklyDay"
 import WeeklyTemp from "../WeeklyTemp/WeeklyTemp"
 import WeeklyIcon from "../WeeklyIcon/WeeklyIcon"
 import styles from "./styles"
 
+const initialIcon = anagrama
+
 const Weather = () => {
+	const [iconWeather, setIconWeather] = useState(initialIcon)
 	const { width } = useWindowDimensions()
-	const { weatherCurrent, weatherDaily } = useContext(WeatherContext)
-	const { iconWeather } = useContext(IconsContext)
-	const { temp_min, temp_max } = weatherCurrent
-	const { temp, descriptionWeather } = weatherDaily
+	const { weatherDaily } = useContext(WeatherContext)
+	const { temp, descriptionWeather, min, max, icon } = weatherDaily
 
+	useEffect(() => {
+		setIconWeather(iconWeatherReplaced)
+	}, [icon])
+	const iconWeatherReplaced = IconsApp[icon]
 	if (!temp) return null
-
 	return (
 		<View style={styles.parentContainer}>
 			<View style={styles.weatherCurrentContainer}>
 				<Animatable.View
 					animation={"bounceInLeft"}
-					duration={3500}
+					duration={2500}
 					style={styles.iconWeatherContainer}
 				>
 					<Image source={iconWeather} style={styles.iconWeather} />
 				</Animatable.View>
 				<View style={styles.infoWeatherContainer}>
 					<View style={styles.textCurrentTempContainer}>
-						<Text
+						<Animatable.Text
+							animation={"fadeInRightBig"}
+							duration={1500}
+							delay={1000}
 							style={{
 								...styles.textCurrentTemp,
 								fontSize: width < 350 ? 55 : 60,
 							}}
 						>
 							{parseFloat(temp).toFixed(1)}
-						</Text>
-						<Text style={styles.textCelciusBigDegrees}>°</Text>
-						<Text style={styles.textCelciusBig}>C</Text>
+						</Animatable.Text>
+						<Animatable.Text
+							animation={"fadeInRightBig"}
+							duration={1500}
+							delay={1500}
+							style={styles.textCelciusBigDegrees}
+						>
+							°
+						</Animatable.Text>
+						<Animatable.Text
+							animation={"fadeInRightBig"}
+							duration={1500}
+							delay={1500}
+							style={styles.textCelciusBig}
+						>
+							C
+						</Animatable.Text>
 					</View>
-					<View style={styles.temMinMaxContainer}>
+					<Animatable.View
+						animation={"bounceIn"}
+						duration={2500}
+						delay={1000}
+						style={styles.temMinMaxContainer}
+					>
 						<Text style={styles.textInfoMinMax}> Min </Text>
 						<Text style={styles.temMinMax}>
-							{parseFloat(temp_min).toFixed(1)}°
+							{parseFloat(min).toFixed(1)}°
 							<Text style={styles.textCelcius}>C</Text> /
 						</Text>
 						<Text style={styles.textInfoMinMax}> Max </Text>
 						<Text style={styles.temMinMax}>
-							{parseFloat(temp_max).toFixed(1)}°
+							{parseFloat(max).toFixed(1)}°
 							<Text style={styles.textCelcius}>C</Text>
 						</Text>
-					</View>
-					<Text style={styles.textDescriptionWeatherCurrent}>
+					</Animatable.View>
+					<Animatable.Text
+						animation={"bounceIn"}
+						duration={2500}
+						delay={1500}
+						style={styles.textDescriptionWeatherCurrent}
+					>
 						{descriptionWeather}
-					</Text>
+					</Animatable.Text>
 				</View>
 			</View>
-			<View style={styles.weatherWeekListContainer}>
+			<Animatable.View
+				animation={"bounceIn"}
+				duration={3500}
+				delay={2000}
+				style={styles.weatherWeekListContainer}
+			>
 				<WeeklyDay />
 				<WeeklyTemp />
 				<WeeklyIcon />
-			</View>
-			<Image
-				source={require("../../../assets/mapa.jpg")}
-				style={styles.mapCities}
-			/>
+			</Animatable.View>
 		</View>
 	)
 }

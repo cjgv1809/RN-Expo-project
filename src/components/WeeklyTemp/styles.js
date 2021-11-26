@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
 	weatherWeekList: {
 		alignItems: "center",
 		flex: 1,
-		marginLeft: 10,
+		marginLeft: 7,
+		marginTop: 5,
 	},
 	textTemWeek: {
 		color: "#fff",
