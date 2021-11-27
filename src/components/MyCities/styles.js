@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 	textCityList: {
 		color: "#FFA600",
 		flex: 1,
-		fontFamily: "RobotoSlab_600SemiBold",
+		fontFamily: "RobotoSlab-SemiBold",
 	},
 	containerBtns: {
 		flex: 2,

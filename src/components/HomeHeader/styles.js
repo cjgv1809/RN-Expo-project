@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 	mainText: {
 		color: "#FFA600",
 		fontSize: 40,
-		fontFamily: "Allura_400Regular",
+		// fontFamily: "AlluraRegular",
 	},
 	subtitleTextContainer: {
 		flexDirection: "row",

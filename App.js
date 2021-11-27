@@ -1,11 +1,5 @@
 import "react-native-gesture-handler"
-import React, {
-	useContext,
-	useEffect,
-	useState,
-	useCallback,
-	useMemo,
-} from "react"
+import React, { useEffect, useState, useCallback, useMemo } from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { NavigationApp } from "./src/navigation/NavigationApp"
 import WeatherProvider from "./src/context/WeatherContext"
@@ -16,19 +10,22 @@ import {
 	RobotoSlab_600SemiBold,
 	RobotoSlab_900Black,
 } from "@expo-google-fonts/roboto-slab"
-import { Allura_400Regular, useFonts } from "@expo-google-fonts/allura"
+import { Allura_400Regular } from "@expo-google-fonts/allura"
 import { LightTheme, DarkTheme } from "./src/stylesGlobal/theme"
+import AppLoading from "expo-app-loading"
+import { useFonts } from "expo-font"
 
 const App = () => {
-	const { fontsRobotoLoaded } = useFonts({
-		RobotoSlab_400Regular,
-		RobotoSlab_600SemiBold,
-		RobotoSlab_900Black,
+	let [fontsLoaded] = useFonts({
+		"RobotoSlab-Black": require("./assets/fonts/RobotoSlab-Black.ttf"),
+		"RobotoSlab-Regular": require("./assets/fonts/RobotoSlab-Regular.ttf"),
+		"RobotoSlab-SemiBold": require("./assets/fonts/RobotoSlab-SemiBold.ttf"),
+		// AlluraRegular: require("./assets/fonts/Allura-Regular.ttf"),
 	})
 
-	const { fontsAlluraLoaded } = useFonts({
-		Allura_400Regular,
-	})
+	// if (!fontsLoaded) {
+	// 	return <AppLoading />
+	// }
 
 	const [themeDark, setThemeDark] = useState(true)
 

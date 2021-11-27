@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 	currentTemp: {
 		flex: 3,
 		color: "#fff",
-		fontFamily: "RobotoSlab_900Black",
+		fontFamily: "RobotoSlab-Black",
 		marginTop: "5%",
 		marginRight: "-10%",
 	},
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 	},
 	textInfoMinMax: {
 		color: "#CFCDCD",
-		fontFamily: "RobotoSlab_400Regular",
+		fontFamily: "RobotoSlab-Regular",
 	},
 	temMinMax: {
 		flexDirection: "row",
