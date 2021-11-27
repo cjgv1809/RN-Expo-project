@@ -1,15 +1,11 @@
 import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
-	weatherWeekListContainer: {
-		// justifyContent: "space-around",
-		// backgroundColor: "pink",
-	},
 	weatherWeekList: {
 		alignItems: "center",
 		flex: 1,
-		marginLeft: 6,
-		// backgroundColor: "green",
+		marginLeft: 7,
+		marginTop: 5,
 	},
 	textTemWeek: {
 		color: "#fff",

@@ -12,8 +12,29 @@ const styles = StyleSheet.create({
 		backgroundColor: "#0004",
 		flex: 1,
 	},
-	headerContainer: {
-		// justifyContent: "center",
+	containerLoading: {
+		alignItems: "center",
+		alignSelf: "center",
+		backgroundColor: "#B0B0AE85",
+		borderRadius: 15,
+		justifyContent: "center",
+		marginTop: 150,
+		width: "60%",
+	},
+	activityIndicator: {
+		alignItems: "center",
+		justifyContent: "center",
+		margin: 15,
+	},
+	textLoading: {
+		color: "#fff",
+		marginBottom: 15,
+		fontSize: 18,
+	},
+	textMsgLoading: {
+		color: "#fff",
+		marginBottom: 15,
+		fontSize: 14,
 	},
 	bodyContainer: {
 		flex: 2.4,

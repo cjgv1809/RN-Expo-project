@@ -3,7 +3,6 @@ import React, { useEffect, useState, useCallback, useMemo } from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { NavigationApp } from "./src/navigation/NavigationApp"
 import WeatherProvider from "./src/context/WeatherContext"
-import IconsProvider from "./src/context/IconsContext"
 import { PreferencesContext } from "./src/context/ThemeContext"
 import {
 	RobotoSlab_400Regular,
@@ -12,7 +11,6 @@ import {
 } from "@expo-google-fonts/roboto-slab"
 import { Allura_400Regular } from "@expo-google-fonts/allura"
 import { LightTheme, DarkTheme } from "./src/stylesGlobal/theme"
-import AppLoading from "expo-app-loading"
 import { useFonts } from "expo-font"
 
 const App = () => {
@@ -46,11 +44,9 @@ const App = () => {
 	return (
 		<PreferencesContext.Provider value={preferences}>
 			<WeatherProvider>
-				<IconsProvider>
-					<NavigationContainer style={{ flex: 1 }} theme={theme}>
-						<NavigationApp />
-					</NavigationContainer>
-				</IconsProvider>
+				<NavigationContainer style={{ flex: 1 }} theme={theme}>
+					<NavigationApp />
+				</NavigationContainer>
 			</WeatherProvider>
 		</PreferencesContext.Provider>
 	)

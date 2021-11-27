@@ -1,6 +1,5 @@
-import React, { useState } from "react"
-import { View, FlatList, Text, useWindowDimensions } from "react-native"
-
+import React from "react"
+import { View, Text, useWindowDimensions } from "react-native"
 import styles from "./styles"
 
 const day = new Date().getDay() + 1

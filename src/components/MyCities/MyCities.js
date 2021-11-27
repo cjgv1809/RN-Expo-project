@@ -10,7 +10,7 @@ import styles from "./styles"
 
 const MyCities = ({ navigation }) => {
 	const [cities, setCities] = useState(initialCities)
-	const { setQuery, setCityRequired, setWeatherCurrent, setWeatherDaily } =
+	const { setCityRequired, setWeatherNameCity, setWeatherDaily } =
 		useContext(WeatherContext)
 	const { width } = useWindowDimensions()
 	const { colors } = useTheme()
@@ -18,9 +18,8 @@ const MyCities = ({ navigation }) => {
 	//Funcion para realizar la consulta del clima
 	const search = (cityName) => {
 		console.log("\x1b[36m%s\x1b[0m", "query from city list")
-		setQuery(true)
 		setCityRequired(cityName)
-		setWeatherCurrent({})
+		setWeatherNameCity("")
 		setWeatherDaily({})
 		navigation.navigate("WeatherScreen")
 	}
