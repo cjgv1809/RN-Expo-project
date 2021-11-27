@@ -1,26 +1,20 @@
 import React, { useContext } from "react"
 import { FlatList, Text, useWindowDimensions, View } from "react-native"
-import * as Animatable from "react-native-animatable"
 import { WeatherContext } from "../../context/WeatherContext"
 import styles from "./styles"
 
 const WeeklyTemp = () => {
 	const { width } = useWindowDimensions()
 	const { weatherDaily } = useContext(WeatherContext)
-
-	const { daily } = weatherDaily	
-	const days = daily.slice(1, 6)	
+	const { days } = weatherDaily
 
 	return (
-		<View style={styles.weatherWeekListContainer}>
+		<View>
 			<FlatList
 				data={days}
 				numColumns={5}
 				renderItem={({ item }) => (
-					<Animatable.View
-						animation={"fadeInRightBig"}
-						duration={2500}
-						delay={200}
+					<View
 						style={styles.weatherWeekList}
 					>
 						<Text
@@ -31,7 +25,7 @@ const WeeklyTemp = () => {
 						>
 							{parseFloat(item.temp.max).toFixed()}°
 						</Text>
-					</Animatable.View>
+					</View>
 				)}
 				keyExtractor={(item) => item.id}
 			/>

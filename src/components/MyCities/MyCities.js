@@ -1,5 +1,11 @@
 import React, { useState, useContext } from "react"
-import { Text, View, Alert, FlatList, useWindowDimensions } from "react-native"
+import {
+	Text,
+	View,
+	Alert,
+	FlatList,
+	useWindowDimensions,
+} from "react-native"
 import { Button } from "react-native-elements"
 import { WeatherContext } from "../../context/WeatherContext"
 import { MaterialIcons } from "@expo/vector-icons"
@@ -9,16 +15,16 @@ import styles from "./styles"
 
 const MyCities = ({ navigation }) => {
 	const [cities, setCities] = useState(initialCities)
-	const { setQuery, setCityRequired, setWeatherCurrent, setWeatherDaily } =
+	const { setCityRequired, setWeatherNameCity, setWeatherDaily } =
 		useContext(WeatherContext)
 	const { width } = useWindowDimensions()
 
 	//Funcion para realizar la consulta del clima
 	const search = (cityName) => {
 		console.log("\x1b[36m%s\x1b[0m", " query from city list")
-		setQuery(true)
+		
 		setCityRequired(cityName)
-		setWeatherCurrent({})
+		setWeatherNameCity("")
 		setWeatherDaily({})
 		navigation.navigate("WeatherScreen")
 	}
@@ -54,7 +60,7 @@ const MyCities = ({ navigation }) => {
 
 	return (
 		<FlatList
-			data={cities}			
+			data={cities}
 			renderItem={({ item }) => (
 				<View style={styles.containerCityItem}>
 					<Text

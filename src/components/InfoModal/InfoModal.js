@@ -1,9 +1,9 @@
 import React from "react"
 import { View, Modal, ScrollView, useWindowDimensions } from "react-native"
 import { Icon } from "react-native-elements"
+import { Button } from "react-native-elements/dist/buttons/Button"
 import * as Animatable from "react-native-animatable"
 import styles from "./styles"
-import { Button } from "react-native-elements/dist/buttons/Button"
 
 const InfoModal = ({ visible, onPress }) => {
 	const { width } = useWindowDimensions()
