@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native"
 
-const styles = StyleSheet.create({	
+const styles = StyleSheet.create({
 	containerCityItem: {
 		alignItems: "center",
 		backgroundColor: "#0005",
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 	textCityList: {
 		color: "#FFA600",
 		flex: 1,
-		fontFamily: "RobotoSlab_600SemiBold",
+		fontFamily: "RobotoSlab-SemiBold",
 	},
 	containerBtns: {
 		flex: 2,
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default styles;
+export default styles

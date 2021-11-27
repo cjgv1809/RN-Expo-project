@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet, Platform } from "react-native"
 
 const styles = StyleSheet.create({
 	headerContainer: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 	mainText: {
 		color: "#FFA600",
 		fontSize: 40,
-		fontFamily: "Allura_400Regular",
+		// fontFamily: "AlluraRegular",
 	},
 	subtitleTextContainer: {
 		flexDirection: "row",
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default styles;
+export default styles

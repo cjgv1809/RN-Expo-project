@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet, Platform } from "react-native"
 
 const styles = StyleSheet.create({
 	headerContainer: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 		color: "#fff",
 		letterSpacing: 2,
 		fontSize: 20,
-		fontFamily: "RobotoSlab_900Black",
+		fontFamily: "RobotoSlab-Black",
 	},
 })
 

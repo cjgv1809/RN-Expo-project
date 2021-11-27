@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import {
 	View,
 	ImageBackground,
@@ -13,8 +13,13 @@ import ButtonComponent from "../components/Button/Button"
 import InputComponent from "../components/Input/Input"
 import MapMyCities from "../components/MapMyCities/MapMyCities"
 import styles from "../stylesGlobal/stylesGlobalScreen"
+import { PreferencesContext } from "../context/ThemeContext"
+import { useTheme } from "@react-navigation/native"
 
 const MapMyCitiesScreen = ({ navigation }) => {
+	const { toggleTheme, themeDark } = useContext(PreferencesContext)
+	const { colors } = useTheme()
+
 	const [keyboardStatus, setKeyboardStatus] = useState(false)
 
 	useEffect(() => {
@@ -71,9 +76,17 @@ const MapMyCitiesScreen = ({ navigation }) => {
 										}
 									/>
 									<ButtonComponent
-										icon="brightness-4"
-										text="Modo Claro"
-										onPress={() => console.log("modo dark")}
+										icon={
+											themeDark
+												? "brightness-5"
+												: "brightness-3"
+										}
+										text={
+											themeDark
+												? "Modo Claro"
+												: "Modo Oscuro"
+										}
+										onPress={() => toggleTheme()}
 									/>
 								</View>
 								<View>

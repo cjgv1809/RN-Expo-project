@@ -1,16 +1,11 @@
 import React, { useState, useContext } from "react"
-import {
-	Text,
-	View,
-	Alert,
-	FlatList,
-	useWindowDimensions,
-} from "react-native"
+import { Text, View, Alert, FlatList, useWindowDimensions } from "react-native"
 import { Button } from "react-native-elements"
 import { WeatherContext } from "../../context/WeatherContext"
 import { MaterialIcons } from "@expo/vector-icons"
 import * as Animatable from "react-native-animatable"
 import initialCities from "./cityList"
+import { useTheme } from "@react-navigation/native"
 import styles from "./styles"
 
 const MyCities = ({ navigation }) => {
@@ -18,11 +13,11 @@ const MyCities = ({ navigation }) => {
 	const { setCityRequired, setWeatherNameCity, setWeatherDaily } =
 		useContext(WeatherContext)
 	const { width } = useWindowDimensions()
+	const { colors } = useTheme()
 
 	//Funcion para realizar la consulta del clima
 	const search = (cityName) => {
-		console.log("\x1b[36m%s\x1b[0m", " query from city list")
-		
+		console.log("\x1b[36m%s\x1b[0m", "query from city list")
 		setCityRequired(cityName)
 		setWeatherNameCity("")
 		setWeatherDaily({})
@@ -62,12 +57,20 @@ const MyCities = ({ navigation }) => {
 		<FlatList
 			data={cities}
 			renderItem={({ item }) => (
-				<View style={styles.containerCityItem}>
+				<View
+					style={[
+						styles.containerCityItem,
+						{ backgroundColor: colors.card },
+					]}
+				>
 					<Text
-						style={{
-							...styles.textCityList,
-							fontSize: width < 350 ? 14 : 16,
-						}}
+						style={[
+							{
+								...styles.textCityList,
+								fontSize: width < 350 ? 14 : 16,
+								color: colors.text,
+							},
+						]}
 					>
 						{truncate(item.cityName, 12)}
 					</Text>
@@ -79,16 +82,19 @@ const MyCities = ({ navigation }) => {
 						<View style={styles.btnContainer}>
 							<Button
 								title="Ver Clima"
-								titleStyle={{
-									fontSize: width < 350 ? 11 : 14,
-								}}
+								titleStyle={[
+									{
+										fontSize: width < 350 ? 11 : 14,
+										color: colors.text,
+									},
+								]}
 								buttonStyle={styles.containerBtnWeather}
 								onPress={() => search(item.cityName)}
 								icon={
 									<MaterialIcons
 										name="device-thermostat"
 										size={20}
-										color="#fff"
+										color={colors.text}
 									/>
 								}
 							/>
@@ -96,16 +102,22 @@ const MyCities = ({ navigation }) => {
 						<View style={styles.btnContainer}>
 							<Button
 								title="Borrar"
-								titleStyle={{
-									fontSize: width < 350 ? 11 : 14,
-								}}
-								buttonStyle={styles.containerBtnDelete}
+								titleStyle={[
+									{
+										fontSize: width < 350 ? 11 : 14,
+										color: colors.text,
+									},
+								]}
+								buttonStyle={[
+									styles.containerBtnDelete,
+									{ backgroundColor: colors.border },
+								]}
 								onPress={() => showAlert(item.id)}
 								icon={
 									<MaterialIcons
 										name="delete"
 										size={20}
-										color="#fff"
+										color={colors.text}
 									/>
 								}
 							/>

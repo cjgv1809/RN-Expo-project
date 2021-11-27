@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 	},
 	textCurrentTemp: {
 		color: "#fff",
-		fontFamily: "RobotoSlab_900Black",
+		fontFamily: "RobotoSlab-Black",
 		textAlign: "center",
 	},
 	textCelciusBigDegrees: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 	},
 	textInfoMinMax: {
 		color: "#CFCDCD",
-		fontFamily: "RobotoSlab_400Regular",
+		fontFamily: "RobotoSlab-Regular",
 	},
 	temMinMax: {
 		color: "#fff",

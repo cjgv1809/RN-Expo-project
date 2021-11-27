@@ -4,7 +4,7 @@ import { WeatherContext } from "../../context/WeatherContext"
 import IconsApp from "../../../assets/iconsApp/iconsApp"
 import styles from "./styles"
 
-const WeeklyIcon = () => {	
+const WeeklyIcon = () => {
 	const { weatherDaily } = useContext(WeatherContext)
 	const { iconsApi } = weatherDaily
 
@@ -20,10 +20,7 @@ const WeeklyIcon = () => {
 		<View style={styles.iconWeatherWeekContainer}>
 			{listIcons.map((icon, i) => (
 				<View style={styles.iconWeatherContainer} key={i}>
-					<Image
-						source={icon}					
-						style={styles.iconWeatherWeek}
-					/>
+					<Image source={icon} style={styles.iconWeatherWeek} />
 				</View>
 			))}
 		</View>

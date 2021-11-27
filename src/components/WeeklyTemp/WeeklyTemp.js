@@ -14,9 +14,7 @@ const WeeklyTemp = () => {
 				data={days}
 				numColumns={5}
 				renderItem={({ item }) => (
-					<View
-						style={styles.weatherWeekList}
-					>
+					<View style={styles.weatherWeekList}>
 						<Text
 							style={{
 								...styles.textTemWeek,

@@ -4,14 +4,22 @@ import { WeatherContext } from "../../context/WeatherContext"
 import * as Animatable from "react-native-animatable"
 import Icon from "react-native-vector-icons/MaterialIcons"
 import styles from "./styles"
+import { useTheme } from "@react-navigation/native"
+import { PreferencesContext } from "../../context/ThemeContext"
 
 const InputComponent = ({ navigation }) => {
 	const [cityName, setCityName] = useState("")
-	const { inputView,setInputView, setCityRequired, setWeatherNameCity, setWeatherDaily } =
-		useContext(WeatherContext)
+	const {
+		inputView,
+		setInputView,
+		setCityRequired,
+		setWeatherNameCity,
+		setWeatherDaily,
+	} = useContext(WeatherContext)
+	const { toggleTheme, themeDark } = useContext(PreferencesContext)
+	const { colors } = useTheme()
 
-
-console.log(inputView)
+	console.log(inputView)
 	// Función que valida la ciudad ingresada y ejecuta la consulta //
 	const search = () => {
 		const showAlert = () => {
@@ -20,7 +28,7 @@ console.log(inputView)
 			])
 		}
 
-		if (cityName.trim() === "") {
+		if (cityName === "") {
 			showAlert()
 			return
 		}
@@ -34,7 +42,7 @@ console.log(inputView)
 		Keyboard.dismiss()
 		navigation.navigate("WeatherScreen")
 		// inputView	?? navigation.navigate("WeatherScreen")
-			
+
 		// inputView ? navigation.navigate("WeatherScreen") : navigation.goBack()
 	}
 

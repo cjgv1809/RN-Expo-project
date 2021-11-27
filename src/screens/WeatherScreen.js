@@ -24,7 +24,6 @@ const WeatherScreen = ({ navigation }) => {
 	const { weatherDaily, weatherNameCity } = useContext(WeatherContext)
 	const { temp } = weatherDaily
 
-
 	useEffect(() => {
 		Keyboard.addListener("keyboardDidShow", keyboardDidShow)
 		Keyboard.addListener("keyboardDidHide", keyboardDidHide)
@@ -33,7 +32,6 @@ const WeatherScreen = ({ navigation }) => {
 			Keyboard.removeAllListeners("keyboardDidShow", keyboardDidShow)
 			Keyboard.removeAllListeners("keyboardDidHide", keyboardDidHide)
 		}
-			
 	}, [])
 	const keyboardDidShow = () => setKeyboardStatus(true)
 	const keyboardDidHide = () => setKeyboardStatus(false)

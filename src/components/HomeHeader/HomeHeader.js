@@ -1,11 +1,18 @@
 import React from "react"
 import { View, Text } from "react-native"
 import styles from "./styles"
-
+import { useTheme } from "@react-navigation/native"
 
 const HomeHeader = () => {
+	const { colors } = useTheme()
+
 	return (
-		<View style={styles.headerContainer}>
+		<View
+			style={[
+				styles.headerContainer,
+				{ backgroundColor: colors.background },
+			]}
+		>
 			<View style={styles.mainTextContainer}>
 				<Text style={styles.mainText}>Paula's</Text>
 			</View>

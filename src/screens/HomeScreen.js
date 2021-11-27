@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import {
 	View,
 	ImageBackground,
@@ -13,8 +13,15 @@ import ButtonComponent from "../components/Button/Button"
 import InputComponent from "../components/Input/Input"
 import InfoModal from "../components/InfoModal/InfoModal"
 import styles from "../stylesGlobal/stylesGlobalScreen"
+import { useTheme } from "@react-navigation/native"
+import { StatusBar } from "expo-status-bar"
+import { PreferencesContext } from "../context/ThemeContext"
 
 const HomeScreen = ({ navigation }) => {
+	const [modalVisible, setModalVisible] = useState(false)
+	const { toggleTheme, themeDark } = useContext(PreferencesContext)
+	const { colors } = useTheme()
+
 	const [modalInfoVisible, setModalInfoVisible] = useState(false)
 	const [keyboardStatus, setKeyboardStatus] = useState(undefined)
 	const [refresh, setRefresh] = useState(undefined)
@@ -29,7 +36,8 @@ const HomeScreen = ({ navigation }) => {
 			Keyboard.removeAllListeners("keyboardDidShow", keyboardDidShow)
 			Keyboard.removeAllListeners("keyboardDidHide", keyboardDidHide)
 		}
-	},[])
+	}, [])
+
 	const keyboardDidShow = () => {
 		setKeyboardStatus(true)
 		setRefresh(!refresh)
@@ -40,79 +48,96 @@ const HomeScreen = ({ navigation }) => {
 	}
 
 	return (
-		<KeyboardAvoidingView
-			behavior={Platform.OS === "ios" ? "padding" : "height"}
-			style={styles.parentContainer}
-		>
-			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-				<SafeAreaView style={styles.parentContainer}>
-					<ImageBackground
-						source={require("../../assets/bgHome.jpg")}
-						style={styles.imageBackground}
+		<>
+			<StatusBar style={themeDark ? "light" : "dark"} />
+			<KeyboardAvoidingView
+				behavior={Platform.OS === "ios" ? "padding" : "height"}
+				style={styles.parentContainer}
+			>
+				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+					<SafeAreaView
+						style={[
+							styles.parentContainer,
+							{ backgroundColor: colors.background },
+						]}
 					>
-						<View style={styles.capBlack}>
-							<View>
-								<HomeHeader />
-							</View>
+						<ImageBackground
+							source={require("../../assets/bgHome.jpg")}
+							style={styles.imageBackground}
+						>
 							<View
-								style={{
-									...styles.bodyContainer,
-								}}
+								style={[
+									styles.capBlack,
+									{ backgroundColor: colors.background },
+								]}
 							>
-								<Animatable.Image
-									source={require("../../assets/anagrama.png")}
-									animation={
-										keyboardStatus
-											? "bounceOut"
-											: "bounceIn"
-									}
-									duration={keyboardStatus ? 800 : 3500}
-									style={styles.anagrama}
-								/>
 								<View>
-									<InfoModal
-										visible={modalInfoVisible}
-										onPress={() =>
-											setModalInfoVisible(false)
+									<HomeHeader />
+								</View>
+								<View
+									style={{
+										...styles.bodyContainer,
+									}}
+								>
+									<Animatable.Image
+										source={require("../../assets/anagrama.png")}
+										animation={
+											keyboardStatus
+												? "bounceOut"
+												: "bounceIn"
 										}
+										duration={keyboardStatus ? 800 : 3500}
+										style={styles.anagrama}
 									/>
+									<View>
+										<InfoModal
+											visible={modalInfoVisible}
+											onPress={() =>
+												setModalInfoVisible(false)
+											}
+										/>
+									</View>
+								</View>
+								<View style={styles.footerContainer}>
+									<View style={styles.btnContainer}>
+										<ButtonComponent
+											icon="folder"
+											text="Mis Ciudades"
+											onPress={() =>
+												navigation.navigate(
+													"MyCitiesScreen",
+												)
+											}
+										/>
+										<ButtonComponent
+											icon="info"
+											text="Info & Uso"
+											onPress={() =>
+												setModalInfoVisible(true)
+											}
+										/>
+										<ButtonComponent
+											icon="group"
+											text="Nosotros"
+											onPress={() =>
+												navigation.navigate(
+													"AboutUsScreen",
+												)
+											}
+										/>
+									</View>
+									<View>
+										<InputComponent
+											navigation={navigation}
+										/>
+									</View>
 								</View>
 							</View>
-							<View style={styles.footerContainer}>
-								<View style={styles.btnContainer}>
-									<ButtonComponent
-										icon="folder"
-										text="Mis Ciudades"
-										onPress={() =>
-											navigation.navigate(
-												"MyCitiesScreen",
-											)
-										}
-									/>
-									<ButtonComponent
-										icon="info"
-										text="Info & Uso"
-										onPress={() =>
-											setModalInfoVisible(true)
-										}
-									/>
-									<ButtonComponent
-										icon="group"
-										text="Nosotros"
-										onPress={() =>
-											navigation.navigate("AboutUsScreen")
-										}
-									/>
-								</View>
-								<View>
-									<InputComponent navigation={navigation} />
-								</View>
-							</View>
-						</View>
-					</ImageBackground>
-				</SafeAreaView>
-			</TouchableWithoutFeedback>
-		</KeyboardAvoidingView>
+						</ImageBackground>
+					</SafeAreaView>
+				</TouchableWithoutFeedback>
+			</KeyboardAvoidingView>
+		</>
 	)
 }
 
