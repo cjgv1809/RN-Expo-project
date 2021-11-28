@@ -8,6 +8,7 @@ import {
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
 	Text,
+	Alert,
 } from "react-native"
 import * as Animatable from "react-native-animatable"
 import { WeatherContext } from "../context/WeatherContext"
@@ -25,6 +26,8 @@ const WeatherScreen = ({ navigation }) => {
 	const [keyboardStatus, setKeyboardStatus] = useState(false)
 	const { weatherDaily, weatherNameCity } = useContext(WeatherContext)
 	const { temp } = weatherDaily
+
+	console.log("RESULT", result)
 
 	useEffect(() => {
 		Keyboard.addListener("keyboardDidShow", keyboardDidShow)
@@ -58,19 +61,47 @@ const WeatherScreen = ({ navigation }) => {
 		})
 	}, [])
 
-	const insertCity = async () => {
+	const insertCity = async (city) => {
 		console.log("weatherNameCity", weatherNameCity)
 		await db.transaction(
 			async (tx) => {
 				await tx.executeSql(
-					`INSERT INTO cities (cityName) VALUES ("Villa Rosa");`,
-					[],
+					`INSERT INTO cities (cityName) VALUES (?);`,
+					[weatherNameCity],
 					(tx, results) => {
 						console.log("results", results)
+						// if (city === weatherNameCity) {
+						// 	Alert.alert(
+						// 		"Info",
+						// 		"Esta ciudad ya ha sido agregada",
+						// 		[
+						// 			{
+						// 				text: "OK",
+						// 			},
+						// 		],
+						// 	)
+						// } else {
 						if (results.rowsAffected > 0) {
-							console.log("Ciudad Agregada", results)
-							setResult(results.rows)
+							Alert.alert(
+								"Exito",
+								"Ciudad agregada exitosamente",
+								[
+									{
+										text: "Ok",
+									},
+								],
+								{ cancelable: false },
+							)
+							// let storedCities = []
+							// for (let i = 0; i < results.rows.length; i++) {
+							// 	let item = results.rows.item(i)
+							// 	console.log("item", item)
+							// 	storedCities.push(item)
+							// }
+							setResult(results)
+							// console.log("storedCities", storedCities)
 						}
+						// }
 					},
 					(tx, error) => {
 						console.log("Error al Agregar las ciudades", error)
@@ -78,7 +109,7 @@ const WeatherScreen = ({ navigation }) => {
 				)
 			},
 			() => {
-				console.log("Transaccion correcta desde insert")
+				console.log("Transaccion correcta")
 			},
 			(error) => {
 				console.log("Error de transaccion")
@@ -154,9 +185,6 @@ const WeatherScreen = ({ navigation }) => {
 										onPress={() =>
 											navigation.navigate(
 												"MyCitiesScreen",
-												// {
-												// 	result,
-												// },
 											)
 										}
 									/>
@@ -164,7 +192,11 @@ const WeatherScreen = ({ navigation }) => {
 										icon="queue"
 										text="Agregar"
 										onPress={() => {
-											insertCity()
+											insertCity(
+												result.includes(
+													weatherNameCity,
+												),
+											)
 											navigation.navigate(
 												"MapMyCitiesScreen",
 											)

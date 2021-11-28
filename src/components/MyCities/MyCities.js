@@ -12,6 +12,8 @@ import { db } from "../../screens/HomeScreen"
 const MyCities = ({ navigation }) => {
 	const [data, setData] = useState([])
 	const [cities, setCities] = useState(data)
+	const [answer, setAnswer] = useState(false)
+	console.log("ANSWER", answer)
 	const {
 		setCityRequired,
 		setWeatherNameCity,
@@ -32,10 +34,11 @@ const MyCities = ({ navigation }) => {
 
 	//Función para borrar una ciudad del listado
 	const cityDelete = (cityId) => {
+		console.log("CITIES", cities)
 		const newCitiesList = cities.filter((city) => city.id !== cityId)
 		setCities(newCitiesList)
 		console.log("newCitiesList", newCitiesList)
-		Alert.alert("Ciudad eliminada con éxito", "", [{ text: "OK" }])
+		Alert.alert("Info", "Ciudad eliminada con éxito", "", [{ text: "OK" }])
 	}
 
 	const showAlert = (cityId) => {
@@ -44,13 +47,16 @@ const MyCities = ({ navigation }) => {
 			"¿Seguro quieres eliminar esta ciudad del listado?",
 			[
 				{
-					text: "OK",
-					onPress: () => cityDelete(cityId),
-				},
-				{
 					text: "Cancel",
 					onPress: () => console.log("Cancelar"),
 					style: "cancel",
+				},
+				{
+					text: "OK",
+					onPress: () =>
+						// cityDelete(cityId)
+						setAnswer(true),
+					style: "default",
 				},
 			],
 		)
@@ -82,7 +88,6 @@ const MyCities = ({ navigation }) => {
 										initialCities.push(item)
 									}
 									setData(initialCities)
-									console.log("initialCities", initialCities)
 								}
 							},
 							(tx, error) => {
@@ -106,23 +111,35 @@ const MyCities = ({ navigation }) => {
 	)
 
 	const deleteCity = (id) => {
-		db.transaction((tx) => {
-			tx.executeSql(`DELETE FROM cities WHERE ID = ?;`, [id]),
-				(tx, results) => {
-					if (results.rowsAffected > 0) {
-						console.log("Ciudad borrada", results)
+		if (answer) {
+			db.transaction((tx) => {
+				tx.executeSql(`DELETE FROM cities WHERE ID = ?;`, [id]),
+					(tx, results) => {
+						if (results.rowsAffected > 0) {
+							Alert.alert(
+								"Exito",
+								"Ciudad borrada exitosamente",
+								[
+									{
+										text: "Ok",
+									},
+								],
+								{ cancelable: false },
+							)
+							setAnswer(false)
+						}
+					},
+					(tx, error) => {
+						console.log("Error al borrar la ciudad")
+					},
+					() => {
+						console.log("Transaccion correcta", "Delete")
+					},
+					(error) => {
+						console.log("Error de transaccion", error)
 					}
-				},
-				(tx, error) => {
-					console.log("Error al borrar la ciudad")
-				},
-				() => {
-					console.log("Transaccion correcta", "Delete")
-				},
-				(error) => {
-					console.log("Error de transaccion", error)
-				}
-		})
+			})
+		}
 	}
 
 	//Función para acortar nombre largo de ciudad

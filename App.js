@@ -4,12 +4,6 @@ import { NavigationContainer } from "@react-navigation/native"
 import { NavigationApp } from "./src/navigation/NavigationApp"
 import WeatherProvider from "./src/context/WeatherContext"
 import { PreferencesContext } from "./src/context/ThemeContext"
-import {
-	RobotoSlab_400Regular,
-	RobotoSlab_600SemiBold,
-	RobotoSlab_900Black,
-} from "@expo-google-fonts/roboto-slab"
-import { Allura_400Regular } from "@expo-google-fonts/allura"
 import { LightTheme, DarkTheme } from "./src/stylesGlobal/theme"
 import { useFonts } from "expo-font"
 
@@ -18,12 +12,7 @@ const App = () => {
 		"RobotoSlab-Black": require("./assets/fonts/RobotoSlab-Black.ttf"),
 		"RobotoSlab-Regular": require("./assets/fonts/RobotoSlab-Regular.ttf"),
 		"RobotoSlab-SemiBold": require("./assets/fonts/RobotoSlab-SemiBold.ttf"),
-		// AlluraRegular: require("./assets/fonts/Allura-Regular.ttf"),
 	})
-
-	// if (!fontsLoaded) {
-	// 	return <AppLoading />
-	// }
 
 	const [themeDark, setThemeDark] = useState(true)
 

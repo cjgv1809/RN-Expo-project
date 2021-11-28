@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState, useEffect, useCallback } from "react"
 import {
 	View,
 	ImageBackground,
@@ -16,8 +16,11 @@ import MapMyCities from "../components/MapMyCities/MapMyCities"
 import styles from "../stylesGlobal/stylesGlobalScreen"
 import { PreferencesContext } from "../context/ThemeContext"
 import { useTheme } from "@react-navigation/native"
+import { useFocusEffect } from "@react-navigation/native"
+import { db } from "./HomeScreen"
 
 const MapMyCitiesScreen = ({ navigation }) => {
+	const [data, setData] = useState([])
 	const { toggleTheme, themeDark } = useContext(PreferencesContext)
 	const { colors } = useTheme()
 
@@ -34,6 +37,48 @@ const MapMyCitiesScreen = ({ navigation }) => {
 	}, [])
 	const keyboardDidShow = () => setKeyboardStatus(true)
 	const keyboardDidHide = () => setKeyboardStatus(false)
+
+	useFocusEffect(
+		useCallback(() => {
+			const fetchCities = () => {
+				db.transaction(
+					(tx) => {
+						tx.executeSql(
+							`SELECT * FROM cities ORDER BY ID DESC`,
+							[],
+							(tx, results) => {
+								let len = results.rows.length
+								if (len > 0) {
+									let initialCities = []
+									for (let i = 0; i < len; i++) {
+										let item = results.rows.item(i)
+										console.log("item", item)
+										initialCities.push(item)
+									}
+									setData(initialCities)
+									console.log("initialCities", initialCities)
+								}
+							},
+							(tx, error) => {
+								console.log(
+									"Error al acceder a la tabla de ciudades",
+								)
+							},
+						)
+					},
+					() => {
+						console.log("Transaccion correcta", "select")
+					},
+					(error) => {
+						console.log("Error de transaccion", error)
+					},
+				)
+			}
+			fetchCities()
+			return () => fetchCities()
+		}, []),
+	)
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
