@@ -1,17 +1,23 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect, useCallback } from "react"
 import { Text, View, Alert, FlatList, useWindowDimensions } from "react-native"
 import { Button } from "react-native-elements"
 import { WeatherContext } from "../../context/WeatherContext"
 import { MaterialIcons } from "@expo/vector-icons"
 import * as Animatable from "react-native-animatable"
-import initialCities from "./cityList"
 import { useTheme } from "@react-navigation/native"
 import styles from "./styles"
+import { useFocusEffect } from "@react-navigation/native"
+import { db } from "../../screens/HomeScreen"
 
 const MyCities = ({ navigation }) => {
-	const [cities, setCities] = useState(initialCities)
-	const { setCityRequired, setWeatherNameCity, setWeatherDaily } =
-		useContext(WeatherContext)
+	const [data, setData] = useState([])
+	const [cities, setCities] = useState(data)
+	const {
+		setCityRequired,
+		setWeatherNameCity,
+		setWeatherDaily,
+		weatherNameCity,
+	} = useContext(WeatherContext)
 	const { width } = useWindowDimensions()
 	const { colors } = useTheme()
 
@@ -28,6 +34,7 @@ const MyCities = ({ navigation }) => {
 	const cityDelete = (cityId) => {
 		const newCitiesList = cities.filter((city) => city.id !== cityId)
 		setCities(newCitiesList)
+		console.log("newCitiesList", newCitiesList)
 		Alert.alert("Ciudad eliminada con éxito", "", [{ text: "OK" }])
 	}
 
@@ -49,13 +56,82 @@ const MyCities = ({ navigation }) => {
 		)
 	}
 
+	useEffect(() => {
+		db.transaction((tx) => {
+			tx.executeSql(
+				"CREATE TABLE IF NOT EXISTS cities (id INTEGER PRIMARY KEY AUTOINCREMENT, cityName TEXT NOT NULL);",
+			)
+		})
+	}, [])
+
+	useFocusEffect(
+		useCallback(() => {
+			const fetchCities = () => {
+				db.transaction(
+					(tx) => {
+						tx.executeSql(
+							`SELECT * FROM cities ORDER BY ID DESC`,
+							[],
+							(tx, results) => {
+								let len = results.rows.length
+								if (len > 0) {
+									let initialCities = []
+									for (let i = 0; i < len; i++) {
+										let item = results.rows.item(i)
+										console.log("item", item)
+										initialCities.push(item)
+									}
+									setData(initialCities)
+									console.log("initialCities", initialCities)
+								}
+							},
+							(tx, error) => {
+								console.log(
+									"Error al acceder a la tabla de ciudades",
+								)
+							},
+						)
+					},
+					() => {
+						console.log("Transaccion correcta", "select")
+					},
+					(error) => {
+						console.log("Error de transaccion", error)
+					},
+				)
+			}
+			fetchCities()
+			return () => fetchCities()
+		}, []),
+	)
+
+	const deleteCity = (id) => {
+		db.transaction((tx) => {
+			tx.executeSql(`DELETE FROM cities WHERE ID = ?;`, [id]),
+				(tx, results) => {
+					if (results.rowsAffected > 0) {
+						console.log("Ciudad borrada", results)
+					}
+				},
+				(tx, error) => {
+					console.log("Error al borrar la ciudad")
+				},
+				() => {
+					console.log("Transaccion correcta", "Delete")
+				},
+				(error) => {
+					console.log("Error de transaccion", error)
+				}
+		})
+	}
+
 	//Función para acortar nombre largo de ciudad
 	const truncate = (str, n) =>
 		str?.length > n ? str.substr(0, n - 1) + "..." : str
 
 	return (
 		<FlatList
-			data={cities}
+			data={data}
 			renderItem={({ item }) => (
 				<View
 					style={[
@@ -112,7 +188,10 @@ const MyCities = ({ navigation }) => {
 									styles.containerBtnDelete,
 									{ backgroundColor: colors.border },
 								]}
-								onPress={() => showAlert(item.id)}
+								onPress={() => {
+									showAlert(item.id)
+									deleteCity(item.id)
+								}}
 								icon={
 									<MaterialIcons
 										name="delete"
@@ -125,7 +204,7 @@ const MyCities = ({ navigation }) => {
 					</Animatable.View>
 				</View>
 			)}
-			keyExtractor={(item) => item.id}
+			keyExtractor={(item) => item.id.toString()}
 		/>
 	)
 }

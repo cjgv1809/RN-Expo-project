@@ -16,9 +16,11 @@ import ButtonComponent from "../components/Button/Button"
 import InputComponent from "../components/Input/Input"
 import Weather from "../components/Weather/Weather"
 import styles from "../stylesGlobal/stylesGlobalScreen"
+import { db } from "./HomeScreen"
 
 const WeatherScreen = ({ navigation }) => {
 	const [geting, setGeting] = useState(true)
+	const [result, setResult] = useState([])
 	const [bgColor, setBgColor] = useState("#0004")
 	const [keyboardStatus, setKeyboardStatus] = useState(false)
 	const { weatherDaily, weatherNameCity } = useContext(WeatherContext)
@@ -47,6 +49,42 @@ const WeatherScreen = ({ navigation }) => {
 		if (temp) setGeting(false)
 		// temp ?? navigation.goBack()
 	})
+
+	useEffect(() => {
+		db.transaction((tx) => {
+			tx.executeSql(
+				"CREATE TABLE IF NOT EXISTS cities (id INTEGER PRIMARY KEY AUTOINCREMENT, cityName TEXT NOT NULL);",
+			)
+		})
+	}, [])
+
+	const insertCity = async () => {
+		console.log("weatherNameCity", weatherNameCity)
+		await db.transaction(
+			async (tx) => {
+				await tx.executeSql(
+					`INSERT INTO cities (cityName) VALUES ("Villa Rosa");`,
+					[],
+					(tx, results) => {
+						console.log("results", results)
+						if (results.rowsAffected > 0) {
+							console.log("Ciudad Agregada", results)
+							setResult(results.rows)
+						}
+					},
+					(tx, error) => {
+						console.log("Error al Agregar las ciudades", error)
+					},
+				)
+			},
+			() => {
+				console.log("Transaccion correcta desde insert")
+			},
+			(error) => {
+				console.log("Error de transaccion")
+			},
+		)
+	}
 
 	return (
 		<KeyboardAvoidingView
@@ -116,17 +154,21 @@ const WeatherScreen = ({ navigation }) => {
 										onPress={() =>
 											navigation.navigate(
 												"MyCitiesScreen",
+												// {
+												// 	result,
+												// },
 											)
 										}
 									/>
 									<ButtonComponent
 										icon="queue"
 										text="Agregar"
-										onPress={() =>
+										onPress={() => {
+											insertCity()
 											navigation.navigate(
 												"MapMyCitiesScreen",
 											)
-										}
+										}}
 									/>
 								</View>
 								<View>

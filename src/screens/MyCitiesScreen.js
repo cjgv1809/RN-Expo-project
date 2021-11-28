@@ -6,6 +6,7 @@ import {
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
 	Keyboard,
+	Platform,
 } from "react-native"
 import * as Animatable from "react-native-animatable"
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle"
@@ -16,7 +17,8 @@ import styles from "../stylesGlobal/stylesGlobalScreen"
 import { useTheme } from "@react-navigation/native"
 import { PreferencesContext } from "../context/ThemeContext"
 
-const MyCitiesScreen = ({ navigation }) => {
+const MyCitiesScreen = ({ navigation, params }) => {
+	console.log("result", params)
 	const { toggleTheme, themeDark } = useContext(PreferencesContext)
 	const { colors } = useTheme()
 	const [keyboardStatus, setKeyboardStatus] = useState(false)

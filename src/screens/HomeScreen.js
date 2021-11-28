@@ -6,6 +6,7 @@ import {
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
 	Keyboard,
+	Platform,
 } from "react-native"
 import * as Animatable from "react-native-animatable"
 import HomeHeader from "../components/HomeHeader/HomeHeader"
@@ -16,6 +17,20 @@ import styles from "../stylesGlobal/stylesGlobalScreen"
 import { useTheme } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import { PreferencesContext } from "../context/ThemeContext"
+import * as SQLite from "expo-sqlite"
+export const db = SQLite.openDatabase(
+	{
+		name: "paulas.db",
+		location: "default",
+		createFromLocation: 1,
+	},
+	() => {
+		console.log("DB Creada")
+	},
+	(error) => {
+		console.log("Error al crear la DB", error)
+	},
+)
 
 const HomeScreen = ({ navigation }) => {
 	const [modalVisible, setModalVisible] = useState(false)
@@ -25,8 +40,6 @@ const HomeScreen = ({ navigation }) => {
 	const [modalInfoVisible, setModalInfoVisible] = useState(false)
 	const [keyboardStatus, setKeyboardStatus] = useState(undefined)
 	const [refresh, setRefresh] = useState(undefined)
-
-	console.log(keyboardStatus)
 
 	useEffect(() => {
 		Keyboard.addListener("keyboardDidShow", keyboardDidShow)

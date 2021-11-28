@@ -6,6 +6,7 @@ import {
 	Keyboard,
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
+	Platform,
 } from "react-native"
 import * as Animatable from "react-native-animatable"
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle"
