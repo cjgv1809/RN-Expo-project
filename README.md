@@ -9,7 +9,8 @@ The goal of this project is to provide a solution for Paula in her work of selli
 ### Figma Design
 
 -   [Figma Link](https://www.figma.com/file/T4R1r8p5vWIYzPkzoedua5/PaulasApp?node-id=140%3A16)
--   [Figma Prototype](https://www.figma.com/proto/T4R1r8p5vWIYzPkzoedua5/Paul
+-   [Figma Prototype](https://www.figma.com/proto/T4R1r8p5vWIYzPkzoedua5/PaulasApp?node-id=127%3A42&starting-point-node-id=298%3A126&scaling=scale-down&show-proto-sidebar=1)
+-   [User Persona](https://www.figma.com/file/3mK6qx7f2uoKsTt1MtxohQ/Persona-Canvas?node-id=0%3A1)
 
 ### Features
 
