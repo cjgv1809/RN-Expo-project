@@ -10,6 +10,7 @@ The goal of this project is to provide a solution for Paula in her work of selli
 
 -   [Figma Link](https://www.figma.com/file/T4R1r8p5vWIYzPkzoedua5/PaulasApp?node-id=140%3A16)
 -   [Figma Prototype](https://www.figma.com/proto/T4R1r8p5vWIYzPkzoedua5/Paul
+
 ### Features
 
 -   Light/dark mode toggle
@@ -32,6 +33,7 @@ The goal of this project is to provide a solution for Paula in her work of selli
 -   [React native](https://reactnative.dev/docs/getting-started)
 -   [Expo CLI](https://expo.io/tools)
 -   [Xcode](https://developer.a
+
 ### Clone
 
 ```
@@ -70,7 +72,7 @@ yarn start
 
 ### Dependencies
 
-"@expo-google-fonts/roboto-slab": "^0.2.0",
+    "@expo-google-fonts/roboto-slab": "^0.2.0",
     "@expo/vector-icons": "^12.0.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.15",
@@ -100,12 +102,14 @@ yarn start
     "react-native-screens": "~3.4.0",
     "react-native-vector-icons": "^9.0.0",
     "react-native-web": "~0.13.12"
- ### Authors
+
+### Authors
 
 -   **Carlos Gomes** - (https://github.com/cjgv1809)
 -   **Eduardo Marcet** - (https://github.com/develmdq)
 -   **Fabian Badini** - (https://github.com/fbadini2)
 -   **Julieta Taras** - (https://github.com/julitaras)
+
 ### Learn More
 
 -   To learn Expo, check out the [Expo documentation](https://docs.expo.dev/)
