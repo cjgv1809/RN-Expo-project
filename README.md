@@ -32,7 +32,7 @@ The goal of this project is to provide a solution for Paula in her work of selli
 -   [Yarn](https://classic.yarnpkg.com/en/)
 -   [React native](https://reactnative.dev/docs/getting-started)
 -   [Expo CLI](https://expo.io/tools)
--   [Xcode](https://developer.a
+-   [Xcode](https://developer.apple.com/xcode/) for iOS development
 
 ### Clone
 
