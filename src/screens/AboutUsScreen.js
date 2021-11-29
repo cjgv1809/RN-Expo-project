@@ -50,7 +50,7 @@ const AboutUsScreen = ({ navigation }) => {
 								{ backgroundColor: colors.background },
 							]}
 						>
-							<View>
+							<View style={styles.headerContainer}>
 								<HeaderTitle title="Sobre Nosotros" />
 							</View>
 							<Animatable.View

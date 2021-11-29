@@ -1,9 +1,10 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { View, Text, useWindowDimensions } from "react-native"
 import styles from "./styles"
 import { useTheme } from "@react-navigation/native"
 
 const HeaderTitle = ({ title }) => {
+	const { width } = useWindowDimensions()
 	const { colors } = useTheme()
 
 	return (
@@ -13,7 +14,12 @@ const HeaderTitle = ({ title }) => {
 				{ backgroundColor: colors.notification },
 			]}
 		>
-			<Text style={[styles.mainText, { color: colors.text }]}>
+			<Text
+				style={[
+					{ ...styles.mainText, fontSize: width < 350 ? 18 : 24 },
+					{ color: colors.text },
+				]}
+			>
 				{title}
 			</Text>
 		</View>

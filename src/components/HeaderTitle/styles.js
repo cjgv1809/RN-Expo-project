@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 	mainText: {
 		color: "#fff",
 		letterSpacing: 2,
-		fontSize: 20,
+		fontSize: 30,
 		fontFamily: "RobotoSlab-Black",
 	},
 })

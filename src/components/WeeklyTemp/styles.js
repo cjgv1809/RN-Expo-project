@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		flex: 1,
 		marginLeft: 7,
-		marginTop: 5,
+		marginTop: 10,
 	},
 	textTemWeek: {
 		color: "#fff",

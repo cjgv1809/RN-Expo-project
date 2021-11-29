@@ -7,31 +7,17 @@ const styles = StyleSheet.create({
 		borderColor: "#fff5",
 		borderRadius: 15,
 		borderWidth: 0.5,
+		height: 80,
+		justifyContent: "center",
 		marginBottom: 5,
 		marginHorizontal: 10,
 		marginTop: Platform.OS === "ios" ? 20 : 45,
-		paddingHorizontal: 25,
-		paddingVertical: 5,
 	},
-	mainTextContainer: {
-		marginBottom: -10,
-	},
-	mainText: {
-		color: "#FFA600",
-		fontSize: 40,
-		// fontFamily: "AlluraRegular",
-	},
-	subtitleTextContainer: {
-		flexDirection: "row",
-	},
-	subtitleText1: {
-		color: "#fff",
-		fontSize: 16,
-		letterSpacing: 2,
-	},
-	subtitleText2: {
-		color: "#fff9",
-		fontSize: 16,
+	logoStyle: {
+		width: 140,
+		height: 60,
+		marginRight:10,
+		resizeMode: "contain",
 	},
 })
 

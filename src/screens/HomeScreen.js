@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react"
 import {
 	View,
 	ImageBackground,
+	Image,
 	SafeAreaView,
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
@@ -25,8 +26,6 @@ const HomeScreen = ({ navigation }) => {
 	const [modalInfoVisible, setModalInfoVisible] = useState(false)
 	const [keyboardStatus, setKeyboardStatus] = useState(undefined)
 	const [refresh, setRefresh] = useState(undefined)
-
-	console.log(keyboardStatus)
 
 	useEffect(() => {
 		Keyboard.addListener("keyboardDidShow", keyboardDidShow)
@@ -71,14 +70,10 @@ const HomeScreen = ({ navigation }) => {
 									{ backgroundColor: colors.background },
 								]}
 							>
-								<View>
+								<View style={styles.headerContainer}>
 									<HomeHeader />
 								</View>
-								<View
-									style={{
-										...styles.bodyContainer,
-									}}
-								>
+								<View style={styles.bodyContainer}>
 									<Animatable.Image
 										source={require("../../assets/anagrama.png")}
 										animation={

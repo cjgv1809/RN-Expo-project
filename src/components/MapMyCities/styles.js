@@ -8,9 +8,9 @@ const styles = StyleSheet.create({
 	mapCities: {
 		borderRadius: 15,
 		flex: 1,
-		width: "93%",
+		width: "91%",
 		alignSelf: "center",
-	},
+	}
 })
 
 export default styles;

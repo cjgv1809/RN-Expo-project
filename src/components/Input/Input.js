@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext } from "react"
 import { Alert, Keyboard, TextInput } from "react-native"
 import { WeatherContext } from "../../context/WeatherContext"
 import * as Animatable from "react-native-animatable"
@@ -9,8 +9,8 @@ import { PreferencesContext } from "../../context/ThemeContext"
 
 const InputComponent = ({ navigation }) => {
 	const [cityName, setCityName] = useState("")
-	const {
-		inputView,
+	
+	const {		
 		setInputView,
 		setCityRequired,
 		setWeatherNameCity,
@@ -19,8 +19,7 @@ const InputComponent = ({ navigation }) => {
 	const { toggleTheme, themeDark } = useContext(PreferencesContext)
 	const { colors } = useTheme()
 
-	console.log(inputView)
-	// Función que valida la ciudad ingresada y ejecuta la consulta //
+		// Función que valida la ciudad ingresada y ejecuta la consulta //
 	const search = () => {
 		const showAlert = () => {
 			Alert.alert("Error", "Este campo no puede quedar vacío", [
@@ -34,18 +33,15 @@ const InputComponent = ({ navigation }) => {
 		}
 
 		console.log("\x1b[35m%s\x1b[0m", "query from input")
-		setCityRequired(cityName.trim())
-		setCityName("")
 		setWeatherNameCity("")
 		setWeatherDaily({})
-		// setInputView(false)
+		setCityRequired(cityName.trim())
+		setCityName("")
+		setInputView(true)
 		Keyboard.dismiss()
-		navigation.navigate("WeatherScreen")
-		// inputView	?? navigation.navigate("WeatherScreen")
-
-		// inputView ? navigation.navigate("WeatherScreen") : navigation.goBack()
+		navigation.navigate("WeatherScreen")		
 	}
-
+	
 	return (
 		<Animatable.View animation="fadeInUpBig" duration={1100}>
 			<TextInput
@@ -55,7 +51,7 @@ const InputComponent = ({ navigation }) => {
 				onChange={(e) => setCityName(e.nativeEvent.text)}
 				style={styles.inputStyle}
 				placeholderTextColor="white"
-				onSubmitEditing={search}
+				onSubmitEditing={search}				
 			/>
 			<Icon
 				name="search"

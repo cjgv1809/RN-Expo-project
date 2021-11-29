@@ -24,7 +24,6 @@ const MyCitiesScreen = ({ navigation }) => {
 	useEffect(() => {
 		Keyboard.addListener("keyboardDidShow", keyboardDidShow)
 		Keyboard.addListener("keyboardDidHide", keyboardDidHide)
-
 		return () => {
 			Keyboard.removeAllListeners("keyboardDidShow", keyboardDidShow)
 			Keyboard.removeAllListeners("keyboardDidHide", keyboardDidHide)
@@ -50,7 +49,7 @@ const MyCitiesScreen = ({ navigation }) => {
 								{ backgroundColor: colors.background },
 							]}
 						>
-							<View>
+							<View style={styles.headerContainer}>
 								<HeaderTitle title="Mis Ciudades" />
 							</View>
 							<Animatable.View
@@ -76,7 +75,7 @@ const MyCitiesScreen = ({ navigation }) => {
 										text="Ver Mapa"
 										onPress={() =>
 											navigation.navigate(
-												"MapMyCitiesScreen",
+												"MapMyCitiesScreen"
 											)
 										}
 									/>

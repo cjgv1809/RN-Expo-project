@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	btnTitleStyle: {
-		// color: "#fff",
+	
 	},
 })
 

@@ -11,9 +11,8 @@ const styles = StyleSheet.create({
 	},
 	iconWeatherWeek: {
 		marginTop: -5,
-		// flex: 1,
-		width: "90%",
-		height: "90%",
+		width: "80%",
+		height: "80%",
 	},
 })
 

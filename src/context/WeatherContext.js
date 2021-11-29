@@ -10,8 +10,9 @@ const WeatherProvider = ({ children }) => {
 	const [cityRequired, setCityRequired] = useState("")
 	const [weatherNameCity, setWeatherNameCity] = useState("")
 	const [weatherDaily, setWeatherDaily] = useState({})
-	const { temp } = weatherDaily
-
+	const [coord, setCoord] = useState({})
+	const { lat, lon } = coord
+	
 	useEffect(() => {
 		//Función que ejecuta la consulta el clima
 		const getWeatherCurrent = async () => {
@@ -24,6 +25,7 @@ const WeatherProvider = ({ children }) => {
 				const { coord, name } = dataWeatherCurrent.data
 				const { lat, lon } = coord
 				setWeatherNameCity(name)
+				setCoord({lat, lon})				
 
 				const urlWeatherDaily = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY_2}&units=metric&lang=es`
 				console.log(urlWeatherDaily)
@@ -62,13 +64,14 @@ const WeatherProvider = ({ children }) => {
 			[
 				{
 					text: "OK",
-					// onPress: () => setInputView(false),
+					onPress: () => setInputView(false),
 				},
 			],
 		)
 		setCityRequired("")
 		setWeatherNameCity("")
 		setWeatherDaily({})
+		setInputView(true)
 	}
 
 	return (
@@ -82,7 +85,8 @@ const WeatherProvider = ({ children }) => {
 				cityRequired,
 				weatherDaily,
 				weatherNameCity,
-				temp,
+				lat,
+				lon,
 			}}
 		>
 			{children}

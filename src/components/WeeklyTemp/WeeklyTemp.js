@@ -18,7 +18,7 @@ const WeeklyTemp = () => {
 						<Text
 							style={{
 								...styles.textTemWeek,
-								fontSize: width < 350 ? 14 : 22,
+								fontSize: width < 350 ? 14 : 24,
 							}}
 						>
 							{parseFloat(item.temp.max).toFixed()}°

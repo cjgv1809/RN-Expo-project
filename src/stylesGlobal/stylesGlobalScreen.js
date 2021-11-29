@@ -12,13 +12,33 @@ const styles = StyleSheet.create({
 		backgroundColor: "#0004",
 		flex: 1,
 	},
+	headerContainer: {
+		justifyContent: "center",
+		paddingBottom: "1%",
+	},
+	bodyContainer: {
+		flex: 1,
+		justifyContent: "center",
+		paddingVertical: "2%",
+	},
+	footerContainer: {
+		justifyContent: "flex-end",
+		paddingTop: "1%",
+	},
+	logo: {
+		flex: 1,
+		resizeMode: "contain",
+	},
+	anagrama: {
+		marginTop: "-70%",
+		marginLeft: -30,
+	},
 	containerLoading: {
 		alignItems: "center",
 		alignSelf: "center",
 		backgroundColor: "#B0B0AE85",
 		borderRadius: 15,
 		justifyContent: "center",
-		marginTop: 150,
 		width: "60%",
 	},
 	activityIndicator: {
@@ -35,18 +55,6 @@ const styles = StyleSheet.create({
 		color: "#fff",
 		marginBottom: 15,
 		fontSize: 14,
-	},
-	bodyContainer: {
-		flex: 2.4,
-		justifyContent: "center",
-	},
-	anagrama: {
-		marginTop: -165,
-		marginLeft: -30,
-	},
-	footerContainer: {
-		justifyContent: "flex-end",
-		flex: 1,
 	},
 	btnContainer: {
 		flexDirection: "row",

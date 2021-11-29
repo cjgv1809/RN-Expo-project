@@ -24,7 +24,7 @@ const WeeklyDay = () => {
 				<Text
 					style={{
 						...styles.textDayWeek,
-						fontSize: width < 350 ? 10 : 11,
+						fontSize: width < 350 ? 10 : 14,
 					}}
 					key={i.toString()}
 				>
