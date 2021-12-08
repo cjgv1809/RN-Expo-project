@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
 		letterSpacing: 2,
 		fontSize: 30,
 		fontFamily: "RobotoSlab-Black",
+		textAlign:'center',
 	},
 })
 

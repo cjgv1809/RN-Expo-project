@@ -1,12 +1,13 @@
 import React, { createContext, useState, useEffect } from "react"
-import { Alert } from "react-native"
 import axios from "axios"
 import { API_KEY_1, API_KEY_2 } from "@env"
 
 export const WeatherContext = createContext()
 
-const WeatherProvider = ({ children }) => {
-	const [inputView, setInputView] = useState(true)
+const WeatherProvider = ({ children }) => {	
+	const [refresh, setRefresh] = useState(true)
+	const [viewSpinner, setViewSpinner] = useState(true)
+	const [responseStatus, setResponseStatus] = useState(true)
 	const [cityRequired, setCityRequired] = useState("")
 	const [weatherNameCity, setWeatherNameCity] = useState("")
 	const [weatherDaily, setWeatherDaily] = useState({})
@@ -14,7 +15,7 @@ const WeatherProvider = ({ children }) => {
 	const { lat, lon } = coord
 	
 	useEffect(() => {
-		//Función que ejecuta la consulta el clima
+		//Función que ejecuta la consulta del clima
 		const getWeatherCurrent = async () => {
 			if (!cityRequired) return null
 			try {
@@ -25,7 +26,7 @@ const WeatherProvider = ({ children }) => {
 				const { coord, name } = dataWeatherCurrent.data
 				const { lat, lon } = coord
 				setWeatherNameCity(name)
-				setCoord({lat, lon})				
+				setCoord({ lat, lon })
 
 				const urlWeatherDaily = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY_2}&units=metric&lang=es`
 				console.log(urlWeatherDaily)
@@ -49,39 +50,31 @@ const WeatherProvider = ({ children }) => {
 					iconsApi,
 				})
 				setCityRequired("")
+				setResponseStatus(true)
+				setViewSpinner(true)
 			} catch (error) {
-				showAlert()
+				setViewSpinner(false)
+				setResponseStatus(false)				
+				setCityRequired("")
+				setWeatherNameCity("")
+				setWeatherDaily({})
 				console.log(error.message)
 			}
 		}
 		getWeatherCurrent()
 	}, [cityRequired])
 
-	const showAlert = () => {
-		Alert.alert(
-			"Error",
-			"No se encontro respuesta para esa consulta, intente con otra",
-			[
-				{
-					text: "OK",
-					onPress: () => setInputView(false),
-				},
-			],
-		)
-		setCityRequired("")
-		setWeatherNameCity("")
-		setWeatherDaily({})
-		setInputView(true)
-	}
-
 	return (
 		<WeatherContext.Provider
 			value={{
 				setCityRequired,
 				setWeatherDaily,
-				setWeatherNameCity,
-				setInputView,
-				inputView,
+				setWeatherNameCity,			
+				setViewSpinner,
+				setRefresh,
+				refresh, 
+				responseStatus,
+				viewSpinner,			
 				cityRequired,
 				weatherDaily,
 				weatherNameCity,

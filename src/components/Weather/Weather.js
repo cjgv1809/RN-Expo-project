@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Image, Text, useWindowDimensions, View } from "react-native"
 import * as Animatable from "react-native-animatable"
+import AwesomeAlert from "react-native-awesome-alerts"
 import { WeatherContext } from "../../context/WeatherContext"
 import IconsApp from "../../../assets/iconsApp/iconsApp"
 import anagrama from "../../../assets/anagrama.png"
@@ -14,16 +15,56 @@ const initialIcon = anagrama
 const Weather = () => {
 	const [iconWeather, setIconWeather] = useState(initialIcon)
 	const { width } = useWindowDimensions()
-	const { weatherDaily } = useContext(WeatherContext)
+	const { weatherDaily, setNoCity, noCity, refresh, setRefresh } =
+		useContext(WeatherContext)
 	const { temp, descriptionWeather, min, max, icon } = weatherDaily
+	const iconWeatherReplaced = IconsApp[icon]
 
 	useEffect(() => {
 		setIconWeather(iconWeatherReplaced)
 	}, [icon])
-	const iconWeatherReplaced = IconsApp[icon]
-	if (!temp) return null
+
+	useEffect(() => {
+		setRefresh(!refresh)
+	}, [])
+
+	const componentAlertNoCity = (
+		<AwesomeAlert
+			show={noCity}
+			showProgress={false}
+			title="Este campo no puede quedar vacío !!"
+			closeOnTouchOutside={false}
+			closeOnHardwareBackPress={true}
+			showConfirmButton={true}
+			confirmText="OK"
+			confirmButtonColor="#FFA600"
+			onConfirmPressed={() => setNoCity(false)}
+			contentContainerStyle={styles.styleAlert}
+			overlayStyle={styles.overlayStyle}
+			titleStyle={styles.titleStyle}
+			messageStyle={styles.messageStyle}
+		/>
+	)
+
 	return (
 		<View style={styles.parentContainer}>
+			{!temp ?? (
+				<AwesomeAlert
+					show={noCity}
+					showProgress={false}
+					title="Este campo no puede quedar vacío !!"
+					closeOnTouchOutside={false}
+					closeOnHardwareBackPress={true}
+					showConfirmButton={true}
+					confirmText="OK"
+					confirmButtonColor="#FFA600"
+					onConfirmPressed={() => setNoCity(false)}
+					contentContainerStyle={styles.styleAlert}
+					overlayStyle={styles.overlayStyle}
+					titleStyle={styles.titleStyle}
+					messageStyle={styles.messageStyle}
+				/>
+			)}
 			<View style={styles.weatherCurrentContainer}>
 				<Animatable.View
 					animation={"bounceInLeft"}
@@ -45,6 +86,7 @@ const Weather = () => {
 						>
 							{parseFloat(temp).toFixed(1)}
 						</Animatable.Text>
+						<View>{componentAlertNoCity}</View>
 						<Animatable.Text
 							animation={"fadeInRightBig"}
 							duration={1500}

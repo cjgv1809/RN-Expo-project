@@ -8,20 +8,21 @@ import {
 	TouchableWithoutFeedback,
 } from "react-native"
 import * as Animatable from "react-native-animatable"
+import { useTheme, useIsFocused } from "@react-navigation/native"
+import { PreferencesContext } from "../context/ThemeContext"
+import { WeatherContext } from "../context/WeatherContext.js"
 import HeaderTitle from "../components/HeaderTitle/HeaderTitle"
 import ButtonComponent from "../components/Button/Button"
 import InputComponent from "../components/Input/Input"
 import MapMyCities from "../components/MapMyCities/MapMyCities"
 import styles from "../stylesGlobal/stylesGlobalScreen"
-import { PreferencesContext } from "../context/ThemeContext"
-import { useTheme } from "@react-navigation/native"
 
 const MapMyCitiesScreen = ({ navigation }) => {
+	const [keyboardStatus, setKeyboardStatus] = useState(false)
 	const { toggleTheme, themeDark } = useContext(PreferencesContext)
 	const { colors } = useTheme()
 
-	const [keyboardStatus, setKeyboardStatus] = useState(false)
-
+	// Info keyboard
 	useEffect(() => {
 		Keyboard.addListener("keyboardDidShow", keyboardDidShow)
 		Keyboard.addListener("keyboardDidHide", keyboardDidHide)
@@ -32,6 +33,7 @@ const MapMyCitiesScreen = ({ navigation }) => {
 	}, [])
 	const keyboardDidShow = () => setKeyboardStatus(true)
 	const keyboardDidHide = () => setKeyboardStatus(false)
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -43,7 +45,12 @@ const MapMyCitiesScreen = ({ navigation }) => {
 						source={require("../../assets/bgHome.jpg")}
 						style={styles.imageBackground}
 					>
-						<View style={styles.capBlack}>
+						<View
+							style={[
+								styles.capBlack,
+								{ backgroundColor: colors.background },
+							]}
+						>
 							<View style={styles.headerContainer}>
 								<HeaderTitle title="Mis Ciudades" />
 							</View>
@@ -68,11 +75,11 @@ const MapMyCitiesScreen = ({ navigation }) => {
 									<ButtonComponent
 										icon="folder"
 										text="Mis Ciudades"
-										onPress={() =>
+										onPress={() => {
 											navigation.navigate(
 												"MyCitiesScreen",
 											)
-										}
+										}}
 									/>
 									<ButtonComponent
 										icon={

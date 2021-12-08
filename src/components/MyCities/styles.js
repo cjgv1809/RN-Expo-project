@@ -13,10 +13,9 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 10,
 	},
 	textCityList: {
-		color: "#FFA600",
 		flex: 1,
 		fontFamily: "RobotoSlab-SemiBold",
-	},
+	},	
 	containerBtns: {
 		flex: 2,
 		flexDirection: "row",

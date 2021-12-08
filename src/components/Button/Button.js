@@ -17,7 +17,10 @@ const ButtonComponent = ({ icon, text, onPress, type }) => {
 			style={styles.btnContainer}
 		>
 			<Button
-				buttonStyle={styles.btnStyle}
+				buttonStyle={{
+					...styles.btnStyle,
+					backgroundColor: colors.btnBackground,
+				}}
 				icon={
 					<Icon
 						name={icon}

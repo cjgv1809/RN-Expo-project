@@ -1,20 +1,28 @@
-import React, { useState, useContext } from "react"
-import { Text, View,  FlatList, useWindowDimensions } from "react-native"
-import { Button } from "react-native-elements"
-import { WeatherContext } from "../../context/WeatherContext"
-import { MaterialIcons } from "@expo/vector-icons"
+import React, { useState, useContext, useEffect } from "react"
+import { Text, View, FlatList, useWindowDimensions } from "react-native"
 import * as Animatable from "react-native-animatable"
-import { db, initialCities } from "./DB"
+import * as SQLite from "expo-sqlite"
+import { MaterialIcons } from "@expo/vector-icons"
+import { Button } from "react-native-elements"
 import { useTheme } from "@react-navigation/native"
+import { WeatherContext } from "../../context/WeatherContext"
+import AlertModal from "../AlertModal/AlertModal"
 import styles from "./styles"
 
+const db = SQLite.openDatabase("paulas_db.db")
+
 const MyCities = ({ navigation }) => {
-	const [cities, setCities] = useState(initialCities)
+	const [alertCityDelete, setAlertCityDelete] = useState(false)
+	const [alertConfirmDelete, setAlertConfirmDelete] = useState(false)
+	const [idCityDelete, setIdCityDelete] = useState("")
+	const [nameCityDelete, setNameCityDelete] = useState("")
+	const [citiesList, setCitiesList] = useState([])
 	const {
 		setCityRequired,
 		setWeatherNameCity,
 		setWeatherDaily,
-		setInputView,
+		refresh,
+		setRefresh,
 	} = useContext(WeatherContext)
 	const { width } = useWindowDimensions()
 	const { colors } = useTheme()
@@ -25,7 +33,6 @@ const MyCities = ({ navigation }) => {
 		setWeatherNameCity("")
 		setWeatherDaily({})
 		setCityRequired(cityName)
-		setInputView(true)
 		navigation.navigate("WeatherScreen")
 	}
 
@@ -33,9 +40,65 @@ const MyCities = ({ navigation }) => {
 	const truncate = (str, n) =>
 		str?.length > n ? str.substr(0, n - 1) + "..." : str
 
+	//Traer ciudades de la db y comprobar existencia de registros en la tabla
+	useEffect(() => {
+		db.transaction((tx) => {
+			tx.executeSql("SELECT * FROM cities", [], (tx, results) => {
+				const dataQuery = []
+				for (let i = 0; i < results.rows.length; ++i){
+					dataQuery.push(results.rows.item(i))}
+				setCitiesList(dataQuery)
+				
+			})
+		})
+	}, [refresh])
+
+	// Eliminar una ciudad de la db
+	const cityDelete = (id) => {
+		db.transaction((tx) => {
+			tx.executeSql("DELETE FROM cities where ID = ?", [id])
+		}),
+			setAlertConfirmDelete(true)
+	}
+
+	const componentAlertDelete = (
+		<AlertModal
+			show={alertCityDelete}
+			title={`¿ Eliminar ${"\n"} ${nameCityDelete} ?`}
+			showCancelButton={true}
+			showConfirmButton={true}
+			cancelText="No, cancelar"
+			confirmText="Si, eliminar"
+			confirmButtonColor="#A7060695"
+			cancelButtonColor="#00000060"
+			onConfirmPressed={() => {
+				cityDelete(idCityDelete)
+				setAlertCityDelete(false)
+				setRefresh(!refresh)
+			}}
+			onCancelPressed={() => setAlertCityDelete(false)}
+		/>
+	)
+	const componentAlertConfirmDelete = (
+		<AlertModal
+			show={alertConfirmDelete}
+			title={`${nameCityDelete}`}
+			message="Se eliminó correctamente !!"
+			closeOnTouchOutside={false}
+			closeOnHardwareBackPress={true}
+			showConfirmButton={true}
+			confirmText="OK"
+			confirmButtonColor="#FFA600"
+			onConfirmPressed={() => {
+				setAlertConfirmDelete(false)
+				setRefresh(!refresh)
+			}}
+		/>
+	)
+
 	return (
 		<FlatList
-			data={cities}
+			data={citiesList}
 			renderItem={({ item }) => (
 				<View
 					style={[
@@ -48,7 +111,7 @@ const MyCities = ({ navigation }) => {
 							{
 								...styles.textCityList,
 								fontSize: width < 350 ? 14 : 16,
-								color: colors.text,
+								color: colors.textCityList,
 							},
 						]}
 					>
@@ -79,6 +142,10 @@ const MyCities = ({ navigation }) => {
 								}
 							/>
 						</View>
+						<View>
+							{componentAlertDelete}
+							{componentAlertConfirmDelete}
+						</View>
 						<View style={styles.btnContainer}>
 							<Button
 								title="Borrar"
@@ -92,7 +159,11 @@ const MyCities = ({ navigation }) => {
 									styles.containerBtnDelete,
 									{ backgroundColor: colors.border },
 								]}
-								onPress={() => showAlert(item.id)}
+								onPress={() => {
+									setAlertCityDelete(true)
+									setIdCityDelete(item.ID)
+									setNameCityDelete(item.cityName)
+								}}
 								icon={
 									<MaterialIcons
 										name="delete"
@@ -105,7 +176,7 @@ const MyCities = ({ navigation }) => {
 					</Animatable.View>
 				</View>
 			)}
-			keyExtractor={(item) => item.id}
+			keyExtractor={(item) => item.ID.toString()}
 		/>
 	)
 }

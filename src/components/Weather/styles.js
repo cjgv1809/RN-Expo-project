@@ -69,6 +69,23 @@ const styles = StyleSheet.create({
 		flex: 0.9,
 		justifyContent: "center",
 	},
+	styleAlert: {
+		backgroundColor: "#484848",
+		borderRadius: 15,
+		fontFamily: "RobotoSlab-SemiBold",
+	},
+	titleStyle: {
+		color: "#fff",
+		fontSize: 20,
+		textAlign: "center",
+	},
+	messageStyle: {
+		color: "#FFA600",
+		fontFamily: "RobotoSlab-SemiBold",
+	},
+	overlayStyle: {
+		backgroundColor: "#00000060",
+	},
 })
 
 export default styles

@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 	},
 	btnContainer: {
-		flexDirection: "row",
 		alignItems: "center",
+		flexDirection: "row",
 		marginHorizontal: 5,
 	},
 })
