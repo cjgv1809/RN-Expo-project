@@ -65,7 +65,6 @@ yarn
 yarn start
 ```
 
--   You'l
 -   You'll then be in the expo development environment.
 -   You can either :
     -   Open the iOS Simulator.
